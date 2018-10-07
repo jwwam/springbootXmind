@@ -1,4 +1,4 @@
-package com.springboot.demo.base.utils;
+package com.springboot.xmind.base.utils;
 
 public class StateParameter {
 	public final static String SUCCESS="1";

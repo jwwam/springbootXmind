@@ -1,6 +1,6 @@
-package com.springboot.demo.base.controller;
+package com.springboot.xmind.base.controller;
 
-import com.springboot.demo.base.utils.StateParameter;
+import com.springboot.xmind.base.utils.StateParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;

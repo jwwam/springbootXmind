@@ -1,7 +1,7 @@
-package com.springboot.demo.controller;
+package com.springboot.xmind.controller;
 
-import com.springboot.demo.base.controller.BaseController;
-import com.springboot.demo.base.utils.StateParameter;
+import com.springboot.xmind.base.controller.BaseController;
+import com.springboot.xmind.base.utils.StateParameter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ public class FirstController extends BaseController{
     @RequestMapping(value="/view")
     public String view(HttpServletRequest request){
         logger.info("进入测试页面");
-        return "/demoPage/firstPage";
+        return "/xmind/xmindList";
     }
 
     @RequestMapping(value="/back", method = RequestMethod.POST)
