@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link type="text/css" rel="stylesheet" href="../home/datatables/dataTables.jqueryui.min.css" />
+    <link type="text/css" rel="stylesheet" href="../home/js/datatables/jquery.dataTables.min.css" />
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -105,57 +105,24 @@
                                 <form id="fmSearch" name="fmSearch" method="get" action="" class="form-inline">
                                     <!-- 标题:<input id="remark" name="remark" value="" class="form-control" style="width:130px;height: 28px;"/>
                                         <input type="submit" value="查询" class="btn btn-warning" style="line-height: 1.0;"/> -->
-                                    <span style="font-size:18px;">数据最后更新时间为：</span><span style="color:green;font-size:18px;"><fmt:formatDate value="${createTime }" pattern="yyyy-MM-dd HH:mm:ss"/></span>
+                                    <span style="font-size:18px;">数据最后更新时间为：</span><span style="color:green;font-size:18px;"></span>
                                 </form>
                             </div>
-                            <table class="table table-hover" style="width:100%;margin-top:15px;">
-                                <tr>
-                                    <th style="text-align:center;">名称</th>
-                                    <th style="text-align:center;">发布者</th>
-                                    <th style="text-align:center;">发布时间(格林尼治)</th>
-                                    <th style="text-align:center;">预览次数</th>
-                                    <th style="text-align:center;">下载次数</th>
-                                    <th style="text-align:center;">热度</th>
-                                    <th style="text-align:center;">缩略图</th>
-                                    <th style="text-align:center;">操作</th>
-                                </tr>
-                                <c:forEach var="xmind" items="${xmindList.list}" varStatus="idx">
+                            <table class="table table-hover" style="width:100%;margin-top:15px;" id="datatable">
+                                <thead>
                                     <tr>
-                                        <td width="7%">${xmind.topic }</td>
-                                        <td width="5%" align="center">
-                                            <a href="javascript:;" title="查看详情" onclick="javascript:author('${xmind.username }')">${xmind.username }</a>
-                                        </td>
-                                        <td width="12%" align="center"><fmt:formatDate value="${xmind.created }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                        <td width="7%" align="center"><span class="label label-success">${xmind.views }</span></td>
-                                        <td width="7%" align="center">
-                                            <span class="pull-center badge bg-red">${xmind.downloads }</span>
-                                        </td>
-                                        <td width="8%" align="center">
-                                            <div class="progress progress-xs">
-                                                <div class="progress-bar progress-bar-danger" style="width: ${(xmind.downloads/1500)*100 }%"></div>
-                                            </div>
-                                        </td>
-                                        <td width="8%" align="center">
-                                            <img alt="" src="${xmind.thumbnailurl}" width="100%" height="30px;">
-                                        </td>
-                                        <td width="10%" align="center">
-                                            <!-- <a href="javascript:modify('')">下载</a> -->
-                                            <input type="button" value="预览" class="btn btn-warning" style="line-height: 1.0;" onclick="javascript:views('${xmind.previewurl }')"/>
-                                            <input type="button" value="下载" class="btn btn-danger" style="line-height: 1.0;" onclick="javascript:download('${xmind.idname }')"/>
-                                        </td>
+                                        <th style="text-align:center;">序号</th>
+                                        <th style="text-align:center;">名称</th>
+                                        <th style="text-align:center;">发布者</th>
+                                        <th style="text-align:center;">发布时间(格林尼治)</th>
+                                        <th style="text-align:center;">预览次数</th>
+                                        <th style="text-align:center;">下载次数</th>
+                                        <th style="text-align:center;">热度</th>
+                                        <th style="text-align:center;">缩略图</th>
+                                        <th style="text-align:center;">操作</th>
                                     </tr>
-                                </c:forEach>
+                                </thead>
                             </table>
-                            <div style="float:left;margin-top: 5px;">
-                                每页<i class="blue">${xmindList.pageSize}</i>条记录&nbsp;共<i class="blue">${xmindList.total}</i>条记录，当前显示第&nbsp;<i class="blue">${xmindList.pageNo}&nbsp;</i>页
-                            </div>
-                            <div class="pagelist" style="float:right;margin-top: 5px;">
-                                <a class="btn-inline" style="border-bottom: none;display: ;" href="javascript:window.location.href='<%=basePath%>news/content?pageNo=1&lang=${language}'">首页</a>
-                                <a class="btn-inline" style="border-bottom: none;display: ;" href="javascript:window.location.href='<%=basePath%>news/content?pageNo=${xmindList.previou}&lang=${language}'">上一页</a>
-                                <a class="btn-inline" style="border-bottom: none;display: ;" >当前显示第&nbsp;<i class="blue">${xmindList.pageNo}&nbsp;</i>页</a>
-                                <a class="btn-inline" style="border-bottom: none;display: ;" href="javascript:window.location.href='<%=basePath%>news/content?pageNo=${xmindList.next}&lang=${language}'">下一页</a>
-                                <a class="btn-inline" style="border-bottom: none;display: ;" href="javascript:window.location.href='<%=basePath%>news/content?pageNo=${xmindList.last}&lang=${language}'">尾页</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -165,6 +132,7 @@
 </div>
 <div id="footer" th:replace="base/footer :: copy"></div>
 </body>
-<script type="text/javascript" src="../home/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../xmindList.js"></script>
+<script type="text/javascript" src="../home/js/common/dataTableParam.js"></script>
+<script type="text/javascript" src="../home/js/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../xmind/xmindList.js"></script>
 </html>
