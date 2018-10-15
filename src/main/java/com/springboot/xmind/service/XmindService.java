@@ -1,48 +1,27 @@
 package com.springboot.xmind.service;
 
-import com.springboot.xmind.base.utils.PageBean;
 import com.springboot.xmind.entity.Xmind;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface XmindService {
-	   
-	int deleteByPrimaryKey(Long id);
 
-    int insert(Xmind record);
+    /**
+     * @auther: zhangyingqi
+     * @date: 11:37 2018/10/12 
+     * @param: [pageable, language, key]
+     * @return: org.springframework.data.domain.Page<com.springboot.xmind.entity.Xmind>
+     * @Description: 查询所有
+     */
+    Page<Xmind> findAll(Pageable pageable, String language, String key);
 
-    int insertSelective(Xmind record);
-
-    Xmind selectByPrimaryKey(Long id);
-    
-    Xmind selectByIdName(String idName);
-
-    int updateByPrimaryKeySelective(Xmind record);
-
-    int updateByPrimaryKey(Xmind record);
-    
-    List<Xmind> getAllXmind();
-    
-    PageBean<Xmind> getPageBean(int pageNo, int pageSize);
-    
-    PageBean<Xmind> getPageBeanByHot(int pageNo, int pageSize);
-    
-    int findTotal();
-    
-    List<Xmind> findList(int pageNo, int pageSize);
-    
-    Xmind getLast();
-    
-    int findTotalByLang(String lang);
-    List<Xmind> findListByLang(String lang, int pageNo, int pageSize);
-    PageBean<Xmind> getPageBeanByLang(String lang, int pageNo, int pageSize);
-    
-    int findTotalByKey(String key);
-    List<Xmind> findListByKey(String key, int pageNo, int pageSize);
-    PageBean<Xmind> getPageBeanByKey(String key, int pageNo, int pageSize);
-    
-    int findTotalByAuthor(String uerName);
-    List<Xmind> findListByAuthor(String uerName, int pageNo, int pageSize);
-    PageBean<Xmind> getPageBeanByAuthor(String uerName, int pageNo, int pageSize);
+    /**
+     * @auther: zhangyingqi
+     * @date: 11:37 2018/10/12 
+     * @param: [pageable, language, key]
+     * @return: org.springframework.data.domain.Page<com.springboot.xmind.entity.Xmind>
+     * @Description: 查询所有by热度
+     */
+    Page<Xmind> findAllByHot(Pageable pageable, String language, String key);
 
 }

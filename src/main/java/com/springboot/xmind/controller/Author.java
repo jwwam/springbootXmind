@@ -22,26 +22,7 @@ public class Author {
 	private ThumbnailsService thumbnailsService;
 	
 	public int count = 0;
-	
-	
-	@RequestMapping("/getAuthorInfo")
-	public String getAuthorInfo(@RequestParam("authorName") String authorName, HttpServletRequest request, HttpServletResponse response, Model model){
-		//发布数
-		
-		//发布列表
-		try {
-			String sPageNo = request.getParameter("pageNo");
-			int pageNo = 1;
-			int pageSize = 25;
-			if (sPageNo != null) {
-				pageNo = Integer.parseInt(sPageNo);
-			} 
-			PageBean<Xmind> authorXmindList = xmindService.getPageBeanByAuthor(authorName, pageNo, pageSize);
-			model.addAttribute("authorXmindList", authorXmindList);
-		} catch (Exception e) {
-		}
-		return "authorInfo";
-	}
+
 
     
 }

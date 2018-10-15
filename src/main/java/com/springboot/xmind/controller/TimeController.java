@@ -51,47 +51,4 @@ public class TimeController {
 		}
 		return "timeLine";
 	}
-	
-	
-	/**
-	 * 按语言
-	 * @param request
-	 * @param response
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/lang")
-	public String lang(@RequestParam("lang") String lang, HttpServletRequest request, HttpServletResponse response, Model model){
-		try {
-			String sPageNo = request.getParameter("pageNo");
-			int pageNo = 1;
-			int pageSize = 50;
-			if (sPageNo != null) {
-				pageNo = Integer.parseInt(sPageNo);
-			}
-			PageBean<Xmind> xmindList = xmindService.getPageBeanByLang(lang, pageNo, pageSize);
-			model.addAttribute("xmindList", xmindList);
-			model.addAttribute("language", lang);
-		} catch (Exception e) {
-		}
-		return "xmindList";
-	}
-
-	
-	@RequestMapping("/getRealDownLoadUrl")
-	public @ResponseBody Object getRealDownLoadUrl(@RequestParam("idname") String idnames, HttpServletRequest request, HttpServletResponse response, Model model){
-		Map<String, Object> map = new HashMap<String, Object>();
-		//map.put("ralurl", ralurl);
-		return JSON.toJSON(map);
-	}
-		
-	
-	@RequestMapping("/timeLine")
-	public String timeLine(HttpServletRequest request, HttpServletResponse response, Model model){
-		
-		return "timeLine";
-	}
-	
-
-    
 }
