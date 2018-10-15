@@ -9,126 +9,126 @@
 <div class="wrapper">
 <!-- head 头部 -->
 <div id="head" th:replace="base/header :: copy"></div>
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>模板列表<small>数据全部来自<a href="https://www.xmind.net/share" target="_blank">官网</a></small></h1>
-            <ol class="breadcrumb">
-                <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i>主页</a></li>
-                <li><a href="javascript:void(0);">列表</a></li>
-                <li class="active">模板</li>
-            </ol>
-        </section>
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                <input type="button" value="按热度" class="btn btn-warning" style="line-height: 1.0;" onclick="hot()"/>
-                            </h3>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>模板列表<small>数据全部来自<a href="https://www.xmind.net/share" target="_blank">官网</a></small></h1>
+        <ol class="breadcrumb">
+            <li><a href="javascript:void(0);"><i class="fa fa-dashboard"></i>主页</a></li>
+            <li><a href="javascript:void(0);">列表</a></li>
+            <li class="active">模板</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            <input type="button" value="按热度" class="btn btn-warning" style="line-height: 1.0;" onclick="hot()"/>
+                        </h3>
 
-                            <div class="box-tools">
-                                <form id="" name="" action="news/find" method="get" >
-                                    <div class="input-group input-group-sm" style="width: 180px;float:right;">
-                                        <input type="text" name="key" class="form-control pull-right" placeholder="查询" style="height:34px;">
-                                        <div class="input-group-btn">
-                                            <button type="submit" class="btn btn-default" style="height:34px;"><i class="fa fa-search"></i></button>
-                                        </div>
+                        <div class="box-tools">
+                            <form id="" name="" action="news/find" method="get" >
+                                <div class="input-group input-group-sm" style="width: 180px;float:right;">
+                                    <input type="text" name="key" class="form-control pull-right" placeholder="查询" style="height:34px;">
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default" style="height:34px;"><i class="fa fa-search"></i></button>
                                     </div>
+                                </div>
 
-                                    <div class="input-group input-group-sm" style="width: 150px;float:right;margin-right:20px;">
-                                        <div style='display: inline-block'>
-                                            <input type='hidden' id='language' name='language' value='${language}'/>
-                                            <select id='lang' name='lang' class='form-control select2' style='width: 150px;color:#999;'>
+                                <div class="input-group input-group-sm" style="width: 150px;float:right;margin-right:20px;">
+                                    <div style='display: inline-block'>
+                                        <input type='hidden' id='language' name='language' value='${language}'/>
+                                        <select id='lang' name='lang' class='form-control select2' style='width: 150px;color:#999;'>
 
-                                                <%-- <c:if test='${not empty language}'>
-                                                <option value='${lang}'>${language}</option>
-                                            </c:if>
-                                                <c:if test='${empty language}'>
-                                                    <option value='-1'>选择语言</option>
-                                                </c:if> --%>
+                                            <%-- <c:if test='${not empty language}'>
+                                            <option value='${lang}'>${language}</option>
+                                        </c:if>
+                                            <c:if test='${empty language}'>
+                                                <option value='-1'>选择语言</option>
+                                            </c:if> --%>
 
-                                            </select>
-                                        </div>
-                                        <script>
-                                            var langs = $('#lang');
-                                            var languages = "${language}";
-                                            $.getJSON('${ROOT}/xmind/news/getLang', function(data) {
-                                                //alert(data);
-                                                //console.log(data);
-                                                //console.log("language==="+$('#language').val());
-                                                langs.empty();
-                                                langs.append(" <option value = '-1'>选择语言</option> ");
-                                                $.each(data.langList, function(i, item) {
-                                                    if(i==0){
-                                                        var lname = 'zh';
-                                                    }else if(i==1){
-                                                        var lname = 'en';
-                                                    }else if(i==2){
-                                                        var lname = 'es';
-                                                    }else if(i==3){
-                                                        var lname = 'de';
-                                                    }else if(i==4){
-                                                        var lname = 'fr';
-                                                    }else{
-                                                        var lname = 'ja';
-                                                    }
-                                                    langs.append("<option value = " + lname + "> " + item + "</option>");
-                                                });
-                                                if(languages==""){
-                                                    $('#lang').val("-1");
+                                        </select>
+                                    </div>
+                                    <script>
+                                        var langs = $('#lang');
+                                        var languages = "${language}";
+                                        $.getJSON('${ROOT}/xmind/news/getLang', function(data) {
+                                            //alert(data);
+                                            //console.log(data);
+                                            //console.log("language==="+$('#language').val());
+                                            langs.empty();
+                                            langs.append(" <option value = '-1'>选择语言</option> ");
+                                            $.each(data.langList, function(i, item) {
+                                                if(i==0){
+                                                    var lname = 'zh';
+                                                }else if(i==1){
+                                                    var lname = 'en';
+                                                }else if(i==2){
+                                                    var lname = 'es';
+                                                }else if(i==3){
+                                                    var lname = 'de';
+                                                }else if(i==4){
+                                                    var lname = 'fr';
                                                 }else{
-                                                    $('#lang').val(languages);
+                                                    var lname = 'ja';
                                                 }
-
-                                                //console.log("languages="+languages);
+                                                langs.append("<option value = " + lname + "> " + item + "</option>");
                                             });
+                                            if(languages==""){
+                                                $('#lang').val("-1");
+                                            }else{
+                                                $('#lang').val(languages);
+                                            }
 
-                                            $('#lang').on('change', function() {
-                                                var text=$('#lang option:selected').text();
-                                                if(text){
-                                                    $('#language').val(text);
-                                                    window.location.href="news/lang?lang="+lang.value+"&hot=0";
-                                                }
-                                            });
-                                        </script>
-                                    </div>
-                                </form>
-                            </div>
+                                            //console.log("languages="+languages);
+                                        });
+
+                                        $('#lang').on('change', function() {
+                                            var text=$('#lang option:selected').text();
+                                            if(text){
+                                                $('#language').val(text);
+                                                window.location.href="news/lang?lang="+lang.value+"&hot=0";
+                                            }
+                                        });
+                                    </script>
+                                </div>
+                            </form>
                         </div>
-                        <div class="box-body table-responsive no-padding">
-                            <div class="listlo" style="margin-top:15px;margin-left:10px;">
-                                <div class="row"></div>
-                                <form id="fmSearch" name="fmSearch" method="get" action="" class="form-inline">
-                                    <!-- 标题:<input id="remark" name="remark" value="" class="form-control" style="width:130px;height: 28px;"/>
-                                        <input type="submit" value="查询" class="btn btn-warning" style="line-height: 1.0;"/> -->
-                                    <span style="font-size:18px;">数据最后更新时间为：</span><span style="color:green;font-size:18px;"></span>
-                                </form>
-                            </div>
-                            <table class="table table-hover" style="width:100%;margin-top:15px;" id="datatable">
-                                <thead>
-                                    <tr>
-                                        <th style="text-align:center;">序号</th>
-                                        <th style="text-align:center;">名称</th>
-                                        <th style="text-align:center;">发布者</th>
-                                        <th style="text-align:center;">发布时间(格林尼治)</th>
-                                        <th style="text-align:center;">预览次数</th>
-                                        <th style="text-align:center;">下载次数</th>
-                                        <th style="text-align:center;">热度</th>
-                                        <th style="text-align:center;">缩略图</th>
-                                        <th style="text-align:center;">操作</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                    </div>
+                    <div class="box-body table-responsive no-padding">
+                        <div class="listlo" style="margin-top:15px;margin-left:10px;">
+                            <div class="row"></div>
+                            <form id="fmSearch" name="fmSearch" method="get" action="" class="form-inline">
+                                <!-- 标题:<input id="remark" name="remark" value="" class="form-control" style="width:130px;height: 28px;"/>
+                                    <input type="submit" value="查询" class="btn btn-warning" style="line-height: 1.0;"/> -->
+                                <span style="font-size:18px;">数据最后更新时间为：</span><span style="color:green;font-size:18px;"></span>
+                            </form>
                         </div>
+                        <table class="table table-hover" style="width:100%;margin-top:15px;" id="datatable">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">序号</th>
+                                    <th style="text-align:center;">名称</th>
+                                    <th style="text-align:center;">发布者</th>
+                                    <th style="text-align:center;">发布时间(格林尼治)</th>
+                                    <th style="text-align:center;">预览次数</th>
+                                    <th style="text-align:center;">下载次数</th>
+                                    <th style="text-align:center;">热度</th>
+                                    <th style="text-align:center;">缩略图</th>
+                                    <th style="text-align:center;">操作</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+</div>
 </div>
 <div id="footer" th:replace="base/footer :: copy"></div>
 </body>
