@@ -48,6 +48,19 @@ public class DateUtils {
 		}
 	    return null;
 	}
-	
-	
+
+	public static Date formateCreated(String getCreateTime){
+		//修改时间
+		String ct = getCreateTime.replace("T", " ");
+		//格式化时间
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			Date createTime = formatter.parse(ct);
+			return createTime;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

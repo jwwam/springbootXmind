@@ -1,15 +1,12 @@
 package com.springboot.xmind.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.springboot.xmind.base.common.DataTablesParam;
+import com.springboot.xmind.base.controller.BaseController;
 import com.springboot.xmind.base.utils.BuildPageRequest;
-import com.springboot.xmind.base.utils.DateUtils;
-import com.springboot.xmind.base.utils.PageBean;
-import com.springboot.xmind.entity.Thumbnails;
+import com.springboot.xmind.base.utils.HttpUtils;
+import com.springboot.xmind.base.utils.StateParameter;
 import com.springboot.xmind.entity.Xmind;
-import com.springboot.xmind.service.ThumbnailsService;
 import com.springboot.xmind.service.XmindService;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,26 +15,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 @Controller
 @RequestMapping("/xmind")
-public class XmindController {
+public class XmindController extends BaseController{
 
 	@Autowired
     private XmindService xmindService;
@@ -49,9 +35,9 @@ public class XmindController {
 
 	@RequestMapping("/getXmindList")
 	@ResponseBody
-	public ModelMap getXmindList(DataTablesParam dataTablesParam, String language, String key){
+	public ModelMap getXmindList(DataTablesParam dataTablesParam, String topic, String language){
 		ModelMap map = new ModelMap();
-		Page<Xmind> pageRe = xmindService.findAll(BuildPageRequest.getPageRequest(dataTablesParam.getPageNum(), dataTablesParam.getiDisplayLength(), Sort.Direction.DESC, "id"), language, key);
+		Page<Xmind> pageRe = xmindService.findAll(topic, language, BuildPageRequest.getPageRequest(dataTablesParam.getPageNum(), dataTablesParam.getiDisplayLength(), Sort.Direction.DESC, "created"));
 		map.put("sEcho", dataTablesParam.getsEcho());
 		map.put("iTotalRecords", pageRe.getTotalElements());
 		map.put("iTotalDisplayRecords",pageRe.getTotalElements());
@@ -61,9 +47,9 @@ public class XmindController {
 
 	@RequestMapping("/getXmindHotList")
 	@ResponseBody
-	public ModelMap getXmindHotList(DataTablesParam dataTablesParam, String language, String key){
+	public ModelMap getXmindHotList(DataTablesParam dataTablesParam, String topic, String language){
 		ModelMap map = new ModelMap();
-		Page<Xmind> pageRe = xmindService.findAllByHot(BuildPageRequest.getPageRequest(dataTablesParam.getPageNum(), dataTablesParam.getiDisplayLength(), Sort.Direction.DESC, "id"), language, key);
+		Page<Xmind> pageRe = xmindService.findAll(topic, language, BuildPageRequest.getPageRequest(dataTablesParam.getPageNum(), dataTablesParam.getiDisplayLength(), Sort.Direction.DESC, "downloads"));
 		map.put("sEcho", dataTablesParam.getsEcho());
 		map.put("iTotalRecords", pageRe.getTotalElements());
 		map.put("iTotalDisplayRecords",pageRe.getTotalElements());
@@ -84,5 +70,21 @@ public class XmindController {
 		model.addAttribute("viewurl", viewurl);
 		return "viewsForm";
 	}
-    
+
+	@RequestMapping(value = "getDownloadurl", method= RequestMethod.POST)
+	@ResponseBody
+	public ModelMap getDownloadurl(String idname){
+		String url = "https://www.xmind.net/share/api/maps/" + idname + "/downloadurl";
+		//请求该地址，获取真实下载地址
+		String result = HttpUtils.sendGetDownload(url);
+		//返回json转换
+		JSONObject json =JSONObject.fromObject(result);
+		//获取返回json
+		//JSONObject links = (JSONObject) json.get("links");
+		//取出链接
+		//String realurl = links.get("default").toString();
+		String realurl = json.get("downloadUrl")+"";
+		return  getModelMap(StateParameter.SUCCESS, realurl,"操作成功");
+	}
+
 }

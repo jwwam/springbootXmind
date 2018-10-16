@@ -11,16 +11,20 @@ import java.util.Date;
 @Data
 public class Xmind extends BaseEntity  {
 
+    //模板标识码
     private String idname;
 
     private Long userid;
 
+    //模板主题
     private String topic;
 
     private String featured;
 
+    //预览链接
     private String previewurl;
 
+    //缩略图
     private String thumbnailurl;
 
     private String backgroundColor;
@@ -29,12 +33,15 @@ public class Xmind extends BaseEntity  {
 
     private String downloadable;
 
+    //下载量
     private Integer downloads;
 
+    //语言
     private String lang;
 
     private String description;
 
+    //预览量
     private Integer views;
 
     private String deleted;
