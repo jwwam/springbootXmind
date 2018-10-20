@@ -4,11 +4,26 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link type="text/css" rel="stylesheet" href="../home/js/datatables/jquery.dataTables.min.css" />
+    <link type="text/css" rel="stylesheet" href="../plugins/bootstrap-slider/slider.css">
+    <!--来自header-->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fonts/font-awesome.min.css" />
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">-->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">-->
+    <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../plugins/select2/select2.min.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/select2/select2.full.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/fastclick/fastclick.js"></script>
+    <script src="../dist/js/app.min.js"></script>
+    <script src="../dist/js/demo.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 <!-- head 头部 -->
-<div id="head" th:replace="base/header :: copy"></div>
+<!--<div id="head" th:replace="base/header :: copy"></div>-->
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -40,12 +55,14 @@
                                                     <button type="button" class="btn btn-default" id="topicBtn" style="height:34px;">
                                                         <i class="fa fa-search"></i>
                                                     </button>
+                                                    <button type='button' class='btn btn-primary' id="openmodal">弹框</button>
                                                 </div>
                                             </div>
                                             <div class="input-group input-group-sm" style="width: 150px;float:right;margin-right:20px;">
                                                 <div style='display: inline-block'>
                                                     <input type='hidden' id='language' name='language' value='${language}'/>
                                                     <select id='lang' name='lang' class='form-control select2' style='width: 150px;color:#999;'>
+                                                        <option value="">请选择</option>
                                                         <option value="zh">中文</option>
                                                         <option value="en">English</option>
                                                         <option value="es">Español</option>
@@ -56,12 +73,12 @@
                                                 </div>
                                             </div>
                                     </div>
-                                </div>
-                                <div class="box-body table-responsive no-padding">
-                                    <div class="listlo" style="margin-top:15px;margin-left:10px;">
+                                    <div class="listlo">
                                         <div class="row"></div>
-                                            <span style="font-size:18px;">数据最后更新时间为：</span><span style="color:green;font-size:18px;"></span>
+                                        <span style="font-size:18px;">数据最后更新时间为：</span><span style="color:green;font-size:18px;"></span>
                                     </div>
+                                </div>
+                                <div class="box-body table-responsive">
                                     <table class="table table-hover" style="width:100%;margin-top:15px;" id="datatable">
                                         <thead>
                                             <tr>
@@ -95,6 +112,7 @@
                                         <div class="input-group input-group-sm" style="width: 150px;float:right;margin-right:20px;">
                                             <div style='display: inline-block'>
                                                 <select id='hotlang' name='lang' class='form-control select2' style='width: 150px;color:#999;'>
+                                                    <option value="">请选择</option>
                                                     <option value="zh">中文</option>
                                                     <option value="en">English</option>
                                                     <option value="es">Español</option>
@@ -105,9 +123,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="box-body table-responsive no-padding">
-                                    <div class="listlo" style="margin-top:15px;margin-left:10px;">
+                                    <div class="listlo">
                                         <div class="row"></div>
                                         <form id="fmSearch" name="fmSearch" method="get" action="" class="form-inline">
                                             <!-- 标题:<input id="remark" name="remark" value="" class="form-control" style="width:130px;height: 28px;"/>
@@ -115,6 +131,8 @@
                                             <span style="font-size:18px;">数据最后更新时间为：</span><span style="color:green;font-size:18px;"></span>
                                         </form>
                                     </div>
+                                </div>
+                                <div class="box-body table-responsive">
                                     <table class="table table-hover" style="width:100%;margin-top:15px;" id="hotdatatable">
                                         <thead>
                                         <tr>
@@ -165,7 +183,34 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modal-slider" tabindex="-1" role="dialog" aria-labelledby="modal-slider-label" aria-hidden="true">
+    <div class="modal-dialog" style="width:55%;" >
+        <div class="modal-content" >
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title" id="modal-slider-label">获取最新数据</h2>
+            </div>
+            <div class="modal-body" style="height: 90px;">
+                <div class="col-sm-12" id="slidermodal">
+                    <input id="sliderVal" hidden="hidden"/>
+                    <input type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="200"
+                           data-slider-step="5" data-slider-value="0" data-slider-tooltip="show" data-slider-id="red">
+                </div>
+                <div class="loading" style="display: none;text-align: center;">
+                    <img src="../images/loading.gif" />
+                </div>
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-primary' id="update">更新</button>
+                <button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+<script type="text/javascript" src="../plugins/bootstrap-slider/bootstrap-slider.js"></script>
 <script type="text/javascript" src="../home/js/common/dataTableParam.js"></script>
 <script type="text/javascript" src="../home/js/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../xmind/xmindList.js"></script>

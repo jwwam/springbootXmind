@@ -205,6 +205,68 @@ $(function () {
         });
     }
 
+    // With JQuery 使用JQuery 方式调用
+    $('.slider').slider({
+        formatter: function (value) {
+            return '更新数据量: ' + value;
+        }
+    }).on('slide', function (slideEvt) {
+        //当滚动时触发
+        //console.info(slideEvt);
+        //获取当前滚动的值，可能有重复
+        // console.info(slideEvt.value);
+    }).on('change', function (e) {
+        //当值发生改变的时候触发
+        //console.info(e);
+        //获取旧值和新值
+        console.info(e.value.oldValue + '--' + e.value.newValue);
+        $("#sliderVal").val(e.value.newValue);
+    });
+
+    $("#openmodal").on('click',function () {
+        $('#modal-slider').modal({
+            keyboard: false,
+            backdrop: false
+        });
+    });
+
+    $("#update").on('click',function () {
+        var start = 0;
+        var end = $("#sliderVal").val()
+        $.ajax({
+            type: 'post',
+            url: "../api/getNewXmind",
+            dataType: "json",
+            async: false,
+            data : {
+                start : start,
+                end : end
+            },
+            beforeSend:function(XMLHttpRequest){
+                $("#slidermodal").hide();
+                $(".loading").show();
+                scrollTo(0,0);
+                //显示文字 $("#loading").html.("<img src='/jquery/images/loading.gif' />");
+            },
+            success: function (result) {
+                if(result.status=="1"){
+                    bindDataTables();
+                    alert(result.msg);
+                }else{
+                    alert(result.msg);
+                }
+            },
+            complete:function(XMLHttpRequest,textStatus){
+                // window.Ewin.alert('远程调用成功，状态文本值：'+textStatus);
+                $(".loading").hide();
+                $("#slidermodal").show();
+            },
+            error: function () {
+                alert("下载出错");
+            }
+        });
+    });
+
     $("#topicBtn").on('click',function () {
         bindDataTables();
     });
