@@ -8,6 +8,7 @@ $(function () {
             "bFilter": false,//不使用自带搜索框
             "bProcessing": true, // 是否显示取数据时的那个等待提示
             "bServerSide": true,//这个用来指明是通过服务端来取数据
+            "bstatesave" :false,
             "bPaginate": true,
             "bSort": false,
             bAutoWidth: false, //自动宽度
@@ -16,6 +17,8 @@ $(function () {
             "fnServerData": dataTableParam.retrieveData ,// 获取数据的处理函数
             "bPaginate": true,
             "sPaginationType": "full_numbers",
+            "aLengthMenu" : [20, 40, 60], //更改显示记录数选项
+            "iDisplayLength" : 40, //默认显示的记录数
             "columns": [
                 { "data": "id" },
                 { "data": "topic" },
@@ -24,7 +27,7 @@ $(function () {
                 { "data": "views" },
                 { "data": "downloads" },
                 { "data": "downloads" },
-                { "data": "thumbnailurl" },
+                /*{ "data": "thumbnailurl" },*/
                 { "data": {"previewurl":"previewurl","idname":"idname","topic":"topic"}},
             ],
             "createdRow": function (row, data, index) {
@@ -83,19 +86,19 @@ $(function () {
                     return "<div class=\"progress progress-xs\"><div class=\"progress-bar progress-bar-danger\" style=\"width: "+ width +"%\"></div></div>";
                 },
                 aTargets: [6]
-            },{
+            },/*{
                 "render": function(data, type, row) {
                     return "<img alt=\"\" src=\""+ data +"\" width=\"100%\" height=\"30px;\">";
                 },
                 aTargets: [7]
-            },{
+            },*/{
                 "mRender": function (data, type,row ) {
                     //
                     return "<a href='#' id='"+data+"' style='cursor: pointer;' class=\"btn btn-primary view\" onclick=\"viewModal('"+ data.previewurl + "','"+ data.idname + "','"+ data.topic +"')\">预览</a>  "+
                         "<a herf='#' id='"+data+"' style='cursor: pointer;' class=\"btn btn-danger download\" onclick=\"downModal('"+ data.idname +"')\">下载</a>";
                 },
                 sDefaultContent: '',
-                aTargets: [8]       //列index
+                aTargets: [7]       //列index
             }
             ],
             columnDefs: [

@@ -51,7 +51,7 @@ public class AlgorithmController extends BaseController{
             e = Integer.parseInt(end);
         }
         Page<Xmind> pageRe = xmindService.findLast(BuildPageRequest.getPageRequest(0, 1, Sort.Direction.DESC, "created"));
-        if(pageRe.getSize()>0){
+        if(pageRe.getContent().size()>0){
             lastTime = pageRe.getContent().get(0).getCreated();
         }else{
             //默认数据库至少有一条数据

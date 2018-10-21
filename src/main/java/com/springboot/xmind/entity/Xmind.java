@@ -1,14 +1,11 @@
 package com.springboot.xmind.entity;
 
-import lombok.Data;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
 @Table(name = "xmind")
-@Data
 public class Xmind extends BaseEntity  {
 
     //模板标识码
@@ -70,4 +67,211 @@ public class Xmind extends BaseEntity  {
 
     private String fileurl;
 
+    public String getIdname() {
+        return idname;
+    }
+
+    public void setIdname(String idname) {
+        this.idname = idname;
+    }
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public String getFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(String featured) {
+        this.featured = featured;
+    }
+
+    public String getPreviewurl() {
+        return previewurl;
+    }
+
+    public void setPreviewurl(String previewurl) {
+        this.previewurl = previewurl;
+    }
+
+    public String getThumbnailurl() {
+        return thumbnailurl;
+    }
+
+    public void setThumbnailurl(String thumbnailurl) {
+        this.thumbnailurl = thumbnailurl;
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public String getCxm() {
+        return cxm;
+    }
+
+    public void setCxm(String cxm) {
+        this.cxm = cxm;
+    }
+
+    public String getDownloadable() {
+        return downloadable;
+    }
+
+    public void setDownloadable(String downloadable) {
+        this.downloadable = downloadable;
+    }
+
+    public Integer getDownloads() {
+        return downloads;
+    }
+
+    public void setDownloads(Integer downloads) {
+        this.downloads = downloads;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public void setViews(Integer views) {
+        this.views = views;
+    }
+
+    public String getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(String deleted) {
+        this.deleted = deleted;
+    }
+
+    public String getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(String completed) {
+        this.completed = completed;
+    }
+
+    public String getAuth() {
+        return auth;
+    }
+
+    public void setAuth(String auth) {
+        this.auth = auth;
+    }
+
+    public String getProfilename() {
+        return profilename;
+    }
+
+    public void setProfilename(String profilename) {
+        this.profilename = profilename;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public String getDaily() {
+        return daily;
+    }
+
+    public void setDaily(String daily) {
+        this.daily = daily;
+    }
+
+    public Date getFormatedTime() {
+        return formatedTime;
+    }
+
+    public void setFormatedTime(Date formatedTime) {
+        this.formatedTime = formatedTime;
+    }
+
+    public String getGravatar() {
+        return gravatar;
+    }
+
+    public void setGravatar(String gravatar) {
+        this.gravatar = gravatar;
+    }
+
+    public String getFileurl() {
+        return fileurl;
+    }
+
+    public void setFileurl(String fileurl) {
+        this.fileurl = fileurl;
+    }
 }

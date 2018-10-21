@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Top Navigation</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper" style="background-image: url('../images/background/background.jpg')">
+  <!-- head 头部 -->
+  <div id="head" th:replace="base/base_header :: copy"></div>
+  <!-- Full Width Column -->
+  <div class="content-wrapper" >
+    <div class="container" style="width: 100%;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Top Navigation
+          <small>Example 2.0</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#">Layout</a></li>
+          <li class="active">Top Navigation</li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Messages</span>
+                <span class="info-box-number">1,410</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Bookmarks</span>
+                <span class="info-box-number">410</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Uploads</span>
+                <span class="info-box-number">13,648</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Likes</span>
+                <span class="info-box-number">93,139</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <div class="row">
+
+          <div class="col-xs-9">
+            <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#list" data-toggle="tab">最新发布</a></li>
+                <li><a href="#hotlist" data-toggle="tab">最热下载</a></li>
+              </ul>
+              <div class="tab-content" id="tab-content">
+                <div class="active tab-pane" id="list">
+                  <div class="box">
+                    <div class="box-header">
+                      <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 180px;float:right;">
+                          <input name="topic" id="topicVal" class="form-control pull-right" placeholder="查询" style="height:34px;">
+                          <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" id="topicBtn" style="height:34px;">
+                              <i class="fa fa-search"></i>
+                            </button>
+                            <button type='button' class='btn btn-primary' id="openmodal">获取最新数据</button>
+                          </div>
+                        </div>
+                        <div class="input-group input-group-sm" style="width: 150px;float:right;margin-right:20px;">
+                          <div style='display: inline-block'>
+                            <input type='hidden' id='language' name='language' value='${language}'/>
+                            <select id='lang' name='lang' class='form-control select2' style='width: 150px;color:#999;'>
+                              <option value="">请选择</option>
+                              <option value="zh">中文</option>
+                              <option value="en">English</option>
+                              <option value="es">Español</option>
+                              <option value="de">Deutsch</option>
+                              <option value="fr">Français</option>
+                              <option value="ja">日本語</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="listlo">
+                        <div class="row"></div>
+                        <span style="font-size:18px;">数据最后更新时间为：</span><span style="color:green;font-size:18px;"></span>
+                      </div>
+                    </div>
+                    <div class="box-body table-responsive">
+                      <table class="table table-hover" style="width:100%;margin-top:15px;" id="datatable">
+                        <thead>
+                        <tr>
+                          <th style="text-align:center;">序号</th>
+                          <th style="text-align:center;">名称</th>
+                          <th style="text-align:center;">发布者</th>
+                          <th style="text-align:center;">发布时间(格林尼治)</th>
+                          <th style="text-align:center;">预览次数</th>
+                          <th style="text-align:center;">下载次数</th>
+                          <th style="text-align:center;">热度</th>
+                          <!--<th style="text-align:center;">缩略图</th>-->
+                          <th style="text-align:center;">操作</th>
+                        </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="hotlist">
+                  <div class="box">
+                    <div class="box-header">
+                      <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 180px;float:right;">
+                          <input name="hotTopic" id="hotTopicVal" class="form-control pull-right" placeholder="查询" style="height:34px;">
+                          <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" id="hotTopicBtn" style="height:34px;">
+                              <i class="fa fa-search"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="input-group input-group-sm" style="width: 150px;float:right;margin-right:20px;">
+                          <div style='display: inline-block'>
+                            <select id='hotlang' name='lang' class='form-control select2' style='width: 150px;color:#999;'>
+                              <option value="">请选择</option>
+                              <option value="zh">中文</option>
+                              <option value="en">English</option>
+                              <option value="es">Español</option>
+                              <option value="de">Deutsch</option>
+                              <option value="fr">Français</option>
+                              <option value="ja">日本語</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="listlo">
+                        <div class="row"></div>
+                        <form id="fmSearch" name="fmSearch" method="get" action="" class="form-inline">
+                          <!-- 标题:<input id="remark" name="remark" value="" class="form-control" style="width:130px;height: 28px;"/>
+                              <input type="submit" value="查询" class="btn btn-warning" style="line-height: 1.0;"/> -->
+                          <span style="font-size:18px;">数据最后更新时间为：</span><span style="color:green;font-size:18px;"></span>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="box-body table-responsive">
+                      <table class="table table-hover" style="width:100%;margin-top:15px;" id="hotdatatable">
+                        <thead>
+                        <tr>
+                          <th style="text-align:center;">序号</th>
+                          <th style="text-align:center;">名称</th>
+                          <th style="text-align:center;">发布者</th>
+                          <th style="text-align:center;">发布时间(格林尼治)</th>
+                          <th style="text-align:center;">预览次数</th>
+                          <th style="text-align:center;">下载次数</th>
+                          <th style="text-align:center;">热度</th>
+                          <th style="text-align:center;">缩略图</th>
+                          <th style="text-align:center;">操作</th>
+                        </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="loading" style="display: none;margin: 100px;text-align: center;">
+                <img src="../images/loading.gif" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <!-- Widget: user widget style 1 -->
+            <div class="box box-widget widget-user-2">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-yellow">
+                <div class="widget-user-image">
+                  <img class="img-circle" src="../dist/img/user7-128x128.jpg" alt="User Avatar">
+                </div>
+                <!-- /.widget-user-image -->
+                <h3 class="widget-user-username">Nadia Carmichael</h3>
+                <h5 class="widget-user-desc">Lead Developer</h5>
+              </div>
+              <div class="box-footer no-padding">
+                <ul class="nav nav-stacked">
+                  <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
+                  <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
+                  <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
+                  <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- /.widget-user -->
+          </div>
+
+          <div class="col-md-3">
+            <!-- Widget: user widget style 1 -->
+            <div class="box box-widget widget-user">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-black" style="background: url('../dist/img/photo1.png') center center;">
+                <h3 class="widget-user-username">Elizabeth Pierce</h3>
+                <h5 class="widget-user-desc">Web Designer</h5>
+              </div>
+              <div class="widget-user-image">
+                <img class="img-circle" src="../dist/img/user3-128x128.jpg" alt="User Avatar">
+              </div>
+              <div class="box-footer">
+                <div class="row">
+                  <div class="col-sm-4 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header">3,200</h5>
+                      <span class="description-text">SALES</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-4 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header">13,000</h5>
+                      <span class="description-text">FOLLOWERS</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-4">
+                    <div class="description-block">
+                      <h5 class="description-header">35</h5>
+                      <span class="description-text">PRODUCTS</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+              </div>
+            </div>
+            <!-- /.widget-user -->
+          </div>
+
+        </div>
+      </section>
+
+      <!-- /.content -->
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.content-wrapper -->
+</div>
+<!-- ./wrapper -->
+<div id="main-footer" th:replace="base/base_footer :: copy"></div>
+<div class="modal fade" id="modal-view" tabindex="-1" role="dialog" aria-labelledby="modal-view-label" aria-hidden="true">
+  <div class="modal-dialog" style="width:95%;" >
+    <div class="modal-content" >
+      <div class="modal-header" >
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h2 class="modal-title" id="modal-view-label">预览&下载</h2>
+      </div>
+      <div class="modal-body">
+        <img src="" id="viewImg" width="100%" height="100%"/>
+      </div>
+      <div class='modal-footer'>
+        <input id="idName" hidden="hidden"/>
+        <button type='button' class='btn btn-primary' id="downloadBtn">下载</button>
+        <button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>
+        <span id='tip'> </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modal-slider" tabindex="-1" role="dialog" aria-labelledby="modal-slider-label" aria-hidden="true">
+  <div class="modal-dialog" style="width:55%;" >
+    <div class="modal-content" >
+      <div class="modal-header" >
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h2 class="modal-title" id="modal-slider-label">获取最新数据</h2>
+      </div>
+      <div class="modal-body" style="height: 90px;">
+        <div class="col-sm-12" id="slidermodal">
+          <input id="sliderVal" hidden="hidden"/>
+          <input type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="200"
+                 data-slider-step="5" data-slider-value="0" data-slider-tooltip="show" data-slider-id="red">
+        </div>
+        <div class="loading" style="display: none;text-align: center;">
+          <img src="../images/loading.gif" />
+        </div>
+      </div>
+      <div class='modal-footer'>
+        <button type='button' class='btn btn-primary' id="update">更新</button>
+        <button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="../plugins/bootstrap-slider/bootstrap-slider.js"></script>
+<script type="text/javascript" src="../home/js/common/dataTableParam.js"></script>
+<script type="text/javascript" src="../home/js/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../xmind/xmindList.js"></script>
+</html>
