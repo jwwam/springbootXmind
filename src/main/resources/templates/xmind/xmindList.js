@@ -335,15 +335,11 @@ function downModal(idName){
     });
 }
 
-function getDownList(idName){
+function getDownList(){
     $.ajax({
         type: 'post',
         url: "../xmind/getDownList",
         dataType: "json",
-        async: false,
-        data : {
-            idname : idName
-        },
         beforeSend:function(XMLHttpRequest){
             //$(".loading").show();
             //$("#tab-content").hide();
@@ -353,7 +349,7 @@ function getDownList(idName){
         success: function (result) {
             if(result.status=="1"){
                 //$("#downloadBtn").attr("href", downUrl);
-                window.location.href = result.data;
+                alert(result.data);
             }else{
                 alert(result.msg);
             }
