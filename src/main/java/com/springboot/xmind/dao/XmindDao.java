@@ -1,11 +1,15 @@
 package com.springboot.xmind.dao;
 
 import com.springboot.xmind.entity.Xmind;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 public interface XmindDao extends PagingAndSortingRepository<Xmind, Long>,JpaSpecificationExecutor<Xmind>,JpaRepository<Xmind,Long> {
@@ -20,5 +24,9 @@ public interface XmindDao extends PagingAndSortingRepository<Xmind, Long>,JpaSpe
     @Query("UPDATE Label SET labelName=?1,labelDes=?2 WHERE id = ?3")
     int updateLabel(String labelName, String labelDes, String id);*/
 
+    Page<Xmind> findByUsername(String username, Pageable pageable);
+
+    @Query("from Xmind x where x.username = ?1")
+    List<Xmind> findByUsername(String username);
 }
 

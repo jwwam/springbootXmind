@@ -4,6 +4,8 @@ import com.springboot.xmind.entity.Xmind;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface XmindService {
 
     /**
@@ -34,4 +36,8 @@ public interface XmindService {
     Page<Xmind> findLast(Pageable pageable);
 
     void save(Xmind xmind);
+
+    List<Xmind> findByName(String name);
+
+    Page<Xmind> findByName(String name, Pageable pageable);
 }

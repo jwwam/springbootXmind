@@ -2,6 +2,7 @@ $(function () {
 
     bindDataTables();
     bindHotDataTables();
+    getUserInfo();
 
     function bindDataTables() {
         $("#datatable").dataTable({
@@ -13,7 +14,7 @@ $(function () {
             "bSort": false,
             bAutoWidth: false, //自动宽度
             destroy:true,
-            "sAjaxSource": "../xmind/getXmindList",
+            "sAjaxSource": "../blog/getUserXmindList",
             "fnServerData": dataTableParam.retrieveData ,// 获取数据的处理函数
             "bPaginate": true,
             "sPaginationType": "full_numbers",
@@ -22,7 +23,6 @@ $(function () {
             "columns": [
                 { "data": "id" },
                 { "data": "topic" },
-                { "data": {"username":"username","id":"id"}},
                 { "data": "created" },
                 { "data": "views" },
                 { "data": "downloads" },
@@ -35,15 +35,11 @@ $(function () {
                 $('td', row).attr("class", "text-center");
             },
             "fnServerParams": function (aoData) {
-                var lang = $('#lang option:selected').val();
-                var topic = $('#topicVal').val();
+                var name = $('#username').val();
                 //console.log("lang="+lang+",topic="+topic);
                 aoData.push({
-                    "name": "topic",
-                    "value": topic
-                },{
-                    "name": "language",
-                    "value": lang
+                    "name": "name",
+                    "value": name
                 });
             },
             "fnDrawCallback": function(){
@@ -55,11 +51,6 @@ $(function () {
             },
             "aoColumnDefs": [{
                 "render": function(data, type, row) {
-                    return "<a href=\"../blog/index?name=" + data.username + "\" title=\"查看详情\" target=\"_blank\" onclick=\"javascript:author('"+ data.username +"')\">"+ data.username +"</a>";
-                },
-                aTargets: [2]
-            },{
-                "render": function(data, type, row) {
                     var da = data;
                     da = new Date(da);
                     var year = da.getFullYear();
@@ -69,23 +60,23 @@ $(function () {
                     //var html = "<span class=\"time-badge\">"+ time +"</span>"
                     return time;
                 },
-                aTargets: [3]
+                aTargets: [2]
             },{
                 "render": function(data, type, row) {
                     return "<span class=\"label label-success\">"+ data +"</span>";
                 },
-                aTargets: [4]
+                aTargets: [3]
             },{
                 "render": function(data, type, row) {
                     return "<span class=\"pull-center badge bg-red\">"+ data +"</span>";
                 },
-                aTargets: [5]
+                aTargets: [4]
             },{
                 "render": function(data, type, row) {
                     var width = (data/1500)*100;
                     return "<div class=\"progress progress-xs\"><div class=\"progress-bar progress-bar-danger\" style=\"width: "+ width +"%\"></div></div>";
                 },
-                aTargets: [6]
+                aTargets: [5]
             },/*{
                 "render": function(data, type, row) {
                     return "<img alt=\"\" src=\""+ data +"\" width=\"100%\" height=\"30px;\">";
@@ -98,7 +89,7 @@ $(function () {
                         "<a herf='#' id='"+data+"' style='cursor: pointer;' class=\"btn btn-danger download\" onclick=\"downModal('"+ data.idname +"')\">下载</a>";
                 },
                 sDefaultContent: '',
-                aTargets: [7]       //列index
+                aTargets: [6]       //列index
             }
             ],
             columnDefs: [
@@ -117,7 +108,7 @@ $(function () {
             "bSort": false,
             bAutoWidth: false, //自动宽度
             destroy:true,
-            "sAjaxSource": "../xmind/getXmindHotList",
+            "sAjaxSource": "../blog/getUserHotXmindList",
             "fnServerData": dataTableParam.retrieveData ,// 获取数据的处理函数
             "bPaginate": true,
             "sPaginationType": "full_numbers",
@@ -139,15 +130,11 @@ $(function () {
                 $('td', row).attr("class", "text-center");
             },
             "fnServerParams": function (aoData) {
-                var hotlang = $('#hotlang option:selected').val();
-                var hotTopic = $('#hotTopicVal').val();
+                var name = $('#username').val();
                 //console.log("lang="+hotlang+",topic="+hotTopic);
                 aoData.push({
-                    "name": "topic",
-                    "value": hotTopic
-                },{
-                    "name": "language",
-                    "value": hotlang
+                    "name": "name",
+                    "value": name
                 });
             },
             "fnDrawCallback": function(){
@@ -159,7 +146,7 @@ $(function () {
             },
             "aoColumnDefs": [{
                 "render": function(data, type, row) {
-                    return "<a href=\"../blog/index?name=" + data.username + "\" title=\"查看详情\" target=\"_blank\" onclick=\"javascript:author('"+ data.username +"')\">"+ data.username +"</a>";
+                    return "<a href=\"javascript:;\" title=\"查看详情\" onclick=\"javascript:author('"+ data.username +"')\">"+ data.username +"</a>";
                 },
                 aTargets: [2]
             },{
@@ -333,3 +320,44 @@ function downModal(idName){
         }
     });
 }
+
+function getUserInfo(){
+    var name = $('#username').val();
+    $.ajax({
+        type: 'post',
+        url: "../blog/getUserInfo",
+        dataType: "json",
+        async: false,
+        data : {
+            name : name
+        },
+        beforeSend:function(XMLHttpRequest){
+            //$(".loading").show();
+            //$("#tab-content").hide();
+            //scrollTo(0,0);
+            //显示文字 $("#loading").html.("<img src='/jquery/images/loading.gif' />");
+        },
+        success: function (result) {
+            if(result.status=="1"){
+                $("#userpic").attr("src", result.data.xmind.gravatar);
+                $("#name").text(result.data.xmind.username);
+                $("#firstname").text(result.data.xmind.firstname);
+                $("#lastname").text(result.data.xmind.lastname);
+                $("#count").text(result.data.count);
+                $("#downs").text(result.data.downs);
+                $("#views").text(result.data.views);
+            }else{
+                alert(result.msg);
+            }
+        },
+        complete:function(XMLHttpRequest,textStatus){
+            // window.Ewin.alert('远程调用成功，状态文本值：'+textStatus);
+            //$(".loading").hide();
+            //$("#tab-content").show();
+        },
+        error: function () {
+            alert("加载发布者信息失败");
+        }
+    });
+}
+

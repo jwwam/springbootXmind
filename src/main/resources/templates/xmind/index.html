@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Top Navigation</title>
+  <title>XMind模板之家</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 </head>
@@ -13,19 +13,19 @@
   <!-- head 头部 -->
   <div id="head" th:replace="base/base_header :: copy"></div>
   <!-- Full Width Column -->
-  <div class="content-wrapper" >
-    <div class="container" style="width: 100%;">
+  <div class="content-wrapper" style="background-color: #00000082">
+    <div class="container" style="width: 100%;margin-top: 50px;">
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Top Navigation
+          这是新设计后的首页，借鉴于AdminLTE页面模板。
           <small>Example 2.0</small>
         </h1>
-        <ol class="breadcrumb">
+        <!--<ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Layout</a></li>
           <li class="active">Top Navigation</li>
-        </ol>
+        </ol>-->
       </section>
 
       <!-- Main content -->
@@ -36,7 +36,7 @@
               <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Messages</span>
+                <span class="info-box-text">发布总数</span>
                 <span class="info-box-number">1,410</span>
               </div>
               <!-- /.info-box-content -->
@@ -49,7 +49,7 @@
               <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Bookmarks</span>
+                <span class="info-box-text">总下载数</span>
                 <span class="info-box-number">410</span>
               </div>
               <!-- /.info-box-content -->
@@ -62,7 +62,7 @@
               <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Uploads</span>
+                <span class="info-box-text">上传数</span>
                 <span class="info-box-number">13,648</span>
               </div>
               <!-- /.info-box-content -->
@@ -75,7 +75,7 @@
               <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Likes</span>
+                <span class="info-box-text">访问总数</span>
                 <span class="info-box-number">93,139</span>
               </div>
               <!-- /.info-box-content -->
@@ -85,8 +85,8 @@
           <!-- /.col -->
         </div>
         <div class="row">
-
-          <div class="col-xs-9">
+          <!--数据表格-->
+          <div class="col-md-9">
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
                 <li class="active"><a href="#list" data-toggle="tab">最新发布</a></li>
@@ -130,15 +130,15 @@
                       <table class="table table-hover" style="width:100%;margin-top:15px;" id="datatable">
                         <thead>
                         <tr>
-                          <th style="text-align:center;">序号</th>
-                          <th style="text-align:center;">名称</th>
-                          <th style="text-align:center;">发布者</th>
-                          <th style="text-align:center;">发布时间(格林尼治)</th>
-                          <th style="text-align:center;">预览次数</th>
-                          <th style="text-align:center;">下载次数</th>
-                          <th style="text-align:center;">热度</th>
+                          <th style="text-align:center;width: 3%">序号</th>
+                          <th style="text-align:center;width: 5%">名称</th>
+                          <th style="text-align:center;width: 5%">发布者</th>
+                          <th style="text-align:center;width: 5%">发布时间(格林尼治)</th>
+                          <th style="text-align:center;width: 5%">预览次数</th>
+                          <th style="text-align:center;width: 5%">下载次数</th>
+                          <th style="text-align:center;width: 10%">热度</th>
                           <!--<th style="text-align:center;">缩略图</th>-->
-                          <th style="text-align:center;">操作</th>
+                          <th style="text-align:center;width: 10%">操作</th>
                         </tr>
                         </thead>
                       </table>
@@ -184,15 +184,15 @@
                       <table class="table table-hover" style="width:100%;margin-top:15px;" id="hotdatatable">
                         <thead>
                         <tr>
-                          <th style="text-align:center;">序号</th>
-                          <th style="text-align:center;">名称</th>
-                          <th style="text-align:center;">发布者</th>
-                          <th style="text-align:center;">发布时间(格林尼治)</th>
-                          <th style="text-align:center;">预览次数</th>
-                          <th style="text-align:center;">下载次数</th>
-                          <th style="text-align:center;">热度</th>
-                          <th style="text-align:center;">缩略图</th>
-                          <th style="text-align:center;">操作</th>
+                          <th style="text-align:center;width: 3%">序号</th>
+                          <th style="text-align:center;width: 5%">名称</th>
+                          <th style="text-align:center;width: 5%">发布者</th>
+                          <th style="text-align:center;width: 5%">发布时间(格林尼治)</th>
+                          <th style="text-align:center;width: 5%">预览次数</th>
+                          <th style="text-align:center;width: 5%">下载次数</th>
+                          <th style="text-align:center;width: 10%">热度</th>
+                          <!--<th style="text-align:center;">缩略图</th>-->
+                          <th style="text-align:center;width: 10%">操作</th>
                         </tr>
                         </thead>
                       </table>
@@ -205,10 +205,13 @@
               </div>
             </div>
           </div>
-
+          <!--下载榜-->
           <div class="col-md-3">
             <!-- Widget: user widget style 1 -->
             <div class="box box-widget widget-user-2">
+              <div class="box-header with-border">
+                <h3 class="box-title">下载榜</h3>
+              </div>
               <!-- Add the bg color to the header using any of the bg-* classes -->
               <div class="widget-user-header bg-yellow">
                 <div class="widget-user-image">
@@ -229,10 +232,13 @@
             </div>
             <!-- /.widget-user -->
           </div>
-
+          <!--上传榜-->
           <div class="col-md-3">
             <!-- Widget: user widget style 1 -->
             <div class="box box-widget widget-user">
+              <div class="box-header with-border">
+                <h3 class="box-title">上传榜</h3>
+              </div>
               <!-- Add the bg color to the header using any of the bg-* classes -->
               <div class="widget-user-header bg-black" style="background: url('../dist/img/photo1.png') center center;">
                 <h3 class="widget-user-username">Elizabeth Pierce</h3>
@@ -268,6 +274,12 @@
                   </div>
                   <!-- /.col -->
                 </div>
+                <ul class="nav nav-stacked">
+                  <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
+                  <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
+                  <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
+                  <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+                </ul>
                 <!-- /.row -->
               </div>
             </div>
@@ -286,7 +298,7 @@
 <!-- ./wrapper -->
 <div id="main-footer" th:replace="base/base_footer :: copy"></div>
 <div class="modal fade" id="modal-view" tabindex="-1" role="dialog" aria-labelledby="modal-view-label" aria-hidden="true">
-  <div class="modal-dialog" style="width:95%;" >
+  <div class="modal-dialog" style="width:90%;" >
     <div class="modal-content" >
       <div class="modal-header" >
         <button type="button" class="close" data-dismiss="modal">

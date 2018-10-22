@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>XMind模板之家</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper" style="background-image: url('../images/background/background.jpg')">
+  <!-- head 头部 -->
+  <div id="head" th:replace="base/base_header :: copy"></div>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="background-color: #00000082">
+      <input hidden="hidden" th:value="${username}" id="username"/>
+      <div class="container" style="width: 100%;margin-top: 50px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            User Profile
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Examples</a></li>
+            <li class="active">User profile</li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+          <div class="row">
+              <!-- 个人信息 -->
+            <div class="col-md-3">
+
+              <!-- Profile Image -->
+              <div class="box box-primary">
+                <div class="box-body box-profile">
+                  <img class="profile-user-img img-responsive img-circle" id="userpic" src="" alt="User profile picture">
+
+                  <h3 class="profile-username text-center" id="name">Nina Mcintire</h3>
+
+                  <p class="text-muted text-center">
+                      <span id="firstname"></span>
+                      <span id="lastname"></span>
+                  </p>
+
+                  <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                      <b>总发布数</b> <a class="pull-right" id="count">1,322</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>总下载量</b> <a class="pull-right" id="downs">543</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>总预览量</b> <a class="pull-right" id="views">13,287</a>
+                    </li>
+                  </ul>
+
+                  <!--<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>-->
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+
+              <!-- About Me Box -->
+              <!--<div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">About Me</h3>
+                </div>
+                &lt;!&ndash; /.box-header &ndash;&gt;
+                <div class="box-body">
+                  <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+
+                  <p class="text-muted">
+                    B.S. in Computer Science from the University of Tennessee at Knoxville
+                  </p>
+
+                  <hr>
+
+                  <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+                  <p class="text-muted">Malibu, California</p>
+
+                  <hr>
+
+                  <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+                  <p>
+                    <span class="label label-danger">UI Design</span>
+                    <span class="label label-success">Coding</span>
+                    <span class="label label-info">Javascript</span>
+                    <span class="label label-warning">PHP</span>
+                    <span class="label label-primary">Node.js</span>
+                  </p>
+
+                  <hr>
+
+                  <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                </div>
+                &lt;!&ndash; /.box-body &ndash;&gt;
+              </div>-->
+              <!-- /.box -->
+            </div>
+              <!-- /.col -->
+              <!-- 发布信息 -->
+                <div class="col-md-6" style="min-height: 500px;">
+                    <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                  <!--<li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+                  <li><a href="#timeline" data-toggle="tab">Timeline</a></li>-->
+                  <li class="active"><a href="#settings" data-toggle="tab">所有发布</a></li>
+                </ul>
+                <div class="tab-content">
+                  <!--<div class="active tab-pane" id="activity">
+                    &lt;!&ndash; Post &ndash;&gt;
+                    <div class="post">
+                      <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+                        <span class="username">
+                              <a href="#">Jonathan Burke Jr.</a>
+                              <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                            </span>
+                        <span class="description">Shared publicly - 7:30 PM today</span>
+                      </div>
+                      &lt;!&ndash; /.user-block &ndash;&gt;
+                      <p>
+                        Lorem ipsum represents a long-held tradition for designers,
+                        typographers and the like. Some people hate it and argue for
+                        its demise, but others ignore the hate as they create awesome
+                        tools to help create filler text for everyone from bacon lovers
+                        to Charlie Sheen fans.
+                      </p>
+                      <ul class="list-inline">
+                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                        </li>
+                        <li class="pull-right">
+                          <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                            (5)</a></li>
+                      </ul>
+
+                      <input class="form-control input-sm" type="text" placeholder="Type a comment">
+                    </div>
+                    &lt;!&ndash; /.post &ndash;&gt;
+
+                    &lt;!&ndash; Post &ndash;&gt;
+                    <div class="post clearfix">
+                      <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
+                        <span class="username">
+                              <a href="#">Sarah Ross</a>
+                              <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                            </span>
+                        <span class="description">Sent you a message - 3 days ago</span>
+                      </div>
+                      &lt;!&ndash; /.user-block &ndash;&gt;
+                      <p>
+                        Lorem ipsum represents a long-held tradition for designers,
+                        typographers and the like. Some people hate it and argue for
+                        its demise, but others ignore the hate as they create awesome
+                        tools to help create filler text for everyone from bacon lovers
+                        to Charlie Sheen fans.
+                      </p>
+
+                      <form class="form-horizontal">
+                        <div class="form-group margin-bottom-none">
+                          <div class="col-sm-9">
+                            <input class="form-control input-sm" placeholder="Response">
+                          </div>
+                          <div class="col-sm-3">
+                            <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    &lt;!&ndash; /.post &ndash;&gt;
+
+                    &lt;!&ndash; Post &ndash;&gt;
+                    <div class="post">
+                      <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+                        <span class="username">
+                              <a href="#">Adam Jones</a>
+                              <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                            </span>
+                        <span class="description">Posted 5 photos - 5 days ago</span>
+                      </div>
+                      &lt;!&ndash; /.user-block &ndash;&gt;
+                      <div class="row margin-bottom">
+                        <div class="col-sm-6">
+                          <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+                        </div>
+                        &lt;!&ndash; /.col &ndash;&gt;
+                        <div class="col-sm-6">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <img class="img-responsive" src="../../dist/img/photo2.png" alt="Photo">
+                              <br>
+                              <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
+                            </div>
+                            &lt;!&ndash; /.col &ndash;&gt;
+                            <div class="col-sm-6">
+                              <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
+                              <br>
+                              <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
+                            </div>
+                            &lt;!&ndash; /.col &ndash;&gt;
+                          </div>
+                          &lt;!&ndash; /.row &ndash;&gt;
+                        </div>
+                        &lt;!&ndash; /.col &ndash;&gt;
+                      </div>
+                      &lt;!&ndash; /.row &ndash;&gt;
+
+                      <ul class="list-inline">
+                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                        </li>
+                        <li class="pull-right">
+                          <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                            (5)</a></li>
+                      </ul>
+
+                      <input class="form-control input-sm" type="text" placeholder="Type a comment">
+                    </div>
+                    &lt;!&ndash; /.post &ndash;&gt;
+                  </div>
+                  &lt;!&ndash; /.tab-pane &ndash;&gt;
+                  <div class="tab-pane" id="timeline">
+                    &lt;!&ndash; The timeline &ndash;&gt;
+                    <ul class="timeline timeline-inverse">
+                      &lt;!&ndash; timeline time label &ndash;&gt;
+                      <li class="time-label">
+                            <span class="bg-red">
+                              10 Feb. 2014
+                            </span>
+                      </li>
+                      &lt;!&ndash; /.timeline-label &ndash;&gt;
+                      &lt;!&ndash; timeline item &ndash;&gt;
+                      <li>
+                        <i class="fa fa-envelope bg-blue"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+
+                          <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+
+                          <div class="timeline-body">
+                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                            quora plaxo ideeli hulu weebly balihoo...
+                          </div>
+                          <div class="timeline-footer">
+                            <a class="btn btn-primary btn-xs">Read more</a>
+                            <a class="btn btn-danger btn-xs">Delete</a>
+                          </div>
+                        </div>
+                      </li>
+                      &lt;!&ndash; END timeline item &ndash;&gt;
+                      &lt;!&ndash; timeline item &ndash;&gt;
+                      <li>
+                        <i class="fa fa-user bg-aqua"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+
+                          <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
+                          </h3>
+                        </div>
+                      </li>
+                      &lt;!&ndash; END timeline item &ndash;&gt;
+                      &lt;!&ndash; timeline item &ndash;&gt;
+                      <li>
+                        <i class="fa fa-comments bg-yellow"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+
+                          <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+
+                          <div class="timeline-body">
+                            Take me to your leader!
+                            Switzerland is small and neutral!
+                            We are more like Germany, ambitious and misunderstood!
+                          </div>
+                          <div class="timeline-footer">
+                            <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                          </div>
+                        </div>
+                      </li>
+                      &lt;!&ndash; END timeline item &ndash;&gt;
+                      &lt;!&ndash; timeline time label &ndash;&gt;
+                      <li class="time-label">
+                            <span class="bg-green">
+                              3 Jan. 2014
+                            </span>
+                      </li>
+                      &lt;!&ndash; /.timeline-label &ndash;&gt;
+                      &lt;!&ndash; timeline item &ndash;&gt;
+                      <li>
+                        <i class="fa fa-camera bg-purple"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+
+                          <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+
+                          <div class="timeline-body">
+                            <img src="http://placehold.it/150x100" alt="..." class="margin">
+                            <img src="http://placehold.it/150x100" alt="..." class="margin">
+                            <img src="http://placehold.it/150x100" alt="..." class="margin">
+                            <img src="http://placehold.it/150x100" alt="..." class="margin">
+                          </div>
+                        </div>
+                      </li>
+                      &lt;!&ndash; END timeline item &ndash;&gt;
+                      <li>
+                        <i class="fa fa-clock-o bg-gray"></i>
+                      </li>
+                    </ul>
+                  </div>-->
+                  <!-- /.tab-pane -->
+
+                  <div class="active tab-pane" id="settings">
+                      <div class="box-body table-responsive">
+                          <table class="table table-hover" style="width:100%;margin-top:15px;" id="datatable">
+                              <thead>
+                              <tr>
+                                  <th style="text-align:center;width: 3%">序号</th>
+                                  <th style="text-align:center;width: 4%">名称</th>
+                                  <th style="text-align:center;width: 5%">发布时间(格林尼治)</th>
+                                  <th style="text-align:center;width: 5%">预览次数</th>
+                                  <th style="text-align:center;width: 5%">下载次数</th>
+                                  <th style="text-align:center;width: 10%">热度</th>
+                                  <!--<th style="text-align:center;">缩略图</th>-->
+                                  <th style="text-align:center;width: 12%">操作</th>
+                              </tr>
+                              </thead>
+                          </table>
+                      </div>
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div>
+                    <!-- /.nav-tabs-custom -->
+                    <div class="loading" style="display: none;margin: 100px;text-align: center;">
+                        <img src="../images/loading.gif" />
+                    </div>
+                </div>
+                <!-- /.col -->
+                <!--下载榜-->
+                <div class="col-md-3">
+                  <!-- Widget: user widget style 1 -->
+                  <div class="box box-widget widget-user-2">
+                      <div class="box-header with-border">
+                          <h3 class="box-title">下载榜</h3>
+                      </div>
+                      <!-- Add the bg color to the header using any of the bg-* classes -->
+                      <div class="widget-user-header bg-yellow">
+                          <div class="widget-user-image">
+                              <img class="img-circle" src="../dist/img/user7-128x128.jpg" alt="User Avatar">
+                          </div>
+                          <!-- /.widget-user-image -->
+                          <h3 class="widget-user-username">Nadia Carmichael</h3>
+                          <h5 class="widget-user-desc">Lead Developer</h5>
+                      </div>
+                      <div class="box-footer no-padding">
+                          <ul class="nav nav-stacked">
+                              <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
+                              <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
+                              <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
+                              <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+                          </ul>
+                      </div>
+                  </div>
+                  <!-- /.widget-user -->
+              </div>
+                <!--上传榜-->
+                <div class="col-md-3">
+                  <!-- Widget: user widget style 1 -->
+                  <div class="box box-widget widget-user">
+                      <div class="box-header with-border">
+                          <h3 class="box-title">上传榜</h3>
+                      </div>
+                      <!-- Add the bg color to the header using any of the bg-* classes -->
+                      <div class="widget-user-header bg-black" style="background: url('../dist/img/photo1.png') center center;">
+                          <h3 class="widget-user-username">Elizabeth Pierce</h3>
+                          <h5 class="widget-user-desc">Web Designer</h5>
+                      </div>
+                      <div class="widget-user-image">
+                          <img class="img-circle" src="../dist/img/user3-128x128.jpg" alt="User Avatar">
+                      </div>
+                      <div class="box-footer">
+                          <div class="row">
+                              <div class="col-sm-4 border-right">
+                                  <div class="description-block">
+                                      <h5 class="description-header">3,200</h5>
+                                      <span class="description-text">SALES</span>
+                                  </div>
+                                  <!-- /.description-block -->
+                              </div>
+                              <!-- /.col -->
+                              <div class="col-sm-4 border-right">
+                                  <div class="description-block">
+                                      <h5 class="description-header">13,000</h5>
+                                      <span class="description-text">FOLLOWERS</span>
+                                  </div>
+                                  <!-- /.description-block -->
+                              </div>
+                              <!-- /.col -->
+                              <div class="col-sm-4">
+                                  <div class="description-block">
+                                      <h5 class="description-header">35</h5>
+                                      <span class="description-text">PRODUCTS</span>
+                                  </div>
+                                  <!-- /.description-block -->
+                              </div>
+                              <!-- /.col -->
+                          </div>
+                          <ul class="nav nav-stacked">
+                              <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
+                              <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
+                              <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
+                              <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+                          </ul>
+                          <!-- /.row -->
+                      </div>
+                  </div>
+                  <!-- /.widget-user -->
+              </div>
+          </div>
+          <!-- /.row -->
+
+        </section>
+        <!-- /.content -->
+      </div>
+  </div>
+  <!-- /.content-wrapper -->
+</div>
+<!-- ./wrapper -->
+<div id="main-footer" th:replace="base/base_footer :: copy"></div>
+<div class="modal fade" id="modal-view" tabindex="-1" role="dialog" aria-labelledby="modal-view-label" aria-hidden="true">
+    <div class="modal-dialog" style="width:90%;" >
+        <div class="modal-content" >
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title" id="modal-view-label">预览&下载</h2>
+            </div>
+            <div class="modal-body">
+                <img src="" id="viewImg" width="100%" height="100%"/>
+            </div>
+            <div class='modal-footer'>
+                <input id="idName" hidden="hidden"/>
+                <button type='button' class='btn btn-primary' id="downloadBtn">下载</button>
+                <button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>
+                <span id='tip'> </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-slider" tabindex="-1" role="dialog" aria-labelledby="modal-slider-label" aria-hidden="true">
+    <div class="modal-dialog" style="width:55%;" >
+        <div class="modal-content" >
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title" id="modal-slider-label">获取最新数据</h2>
+            </div>
+            <div class="modal-body" style="height: 90px;">
+                <div class="col-sm-12" id="slidermodal">
+                    <input id="sliderVal" hidden="hidden"/>
+                    <input type="text" value="" class="slider form-control" data-slider-min="0" data-slider-max="200"
+                           data-slider-step="5" data-slider-value="0" data-slider-tooltip="show" data-slider-id="red">
+                </div>
+                <div class="loading" style="display: none;text-align: center;">
+                    <img src="../images/loading.gif" />
+                </div>
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-primary' id="update">更新</button>
+                <button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../plugins/bootstrap-slider/bootstrap-slider.js"></script>
+<script type="text/javascript" src="../home/js/common/dataTableParam.js"></script>
+<script type="text/javascript" src="../home/js/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../xmind/blog.js"></script>
+</html>

@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 @Service("xmindService")
 public class XmindServiceImpl implements XmindService {
@@ -40,6 +41,16 @@ public class XmindServiceImpl implements XmindService {
 	@Override
 	public void save(Xmind xmind) {
 		xmindDao.save(xmind);
+	}
+
+	@Override
+	public Page<Xmind> findByName(String name, Pageable pageable) {
+		return xmindDao.findByUsername(name, pageable);
+	}
+
+	@Override
+	public List<Xmind> findByName(String name) {
+		return xmindDao.findByUsername(name);
 	}
 
 	public Specification<Xmind> getWhereClause(final String topic, final String lang) {
