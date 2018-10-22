@@ -92,12 +92,10 @@ public class XmindController extends BaseController{
 	@RequestMapping("/getDownList")
 	@ResponseBody
 	public ModelMap getDownList(){
-		ModelMap map = new ModelMap();
 		Sort sort = new Sort(Sort.Direction.DESC, "downloads");
 		Pageable pageable = new PageRequest(0, 100, sort);
 		Page<Xmind> pageRe = xmindService.getDownTop100(pageable);
-		map.put("list", pageRe.getContent());
-		return map;
+		return  getModelMap(StateParameter.SUCCESS, pageRe.getContent(),"操作成功");
 	}
 
 }
