@@ -8,6 +8,8 @@ import com.springboot.xmind.entity.Xmind;
 import com.springboot.xmind.service.XmindService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,9 +29,34 @@ public class BlogController extends BaseController {
     private XmindService xmindService;
 
     @RequestMapping(value="/index")
-    public String auth(HttpServletRequest request,String name){
+    public String index(HttpServletRequest request,String name){
         request.setAttribute("username", name);
+        try {
+            Sort sort = new Sort(Sort.Direction.DESC, "created");
+            Pageable pageable = new PageRequest(0, 2, sort);
+            Page<Xmind> pagae = xmindService.findByName(name, pageable);
+            request.setAttribute("page", pagae.getContent());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return "/xmind/blog";
+    }
+
+    @RequestMapping(value="/getUserContent")
+    @ResponseBody
+    public ModelMap getUserContent(String name, String page){
+        StringBuffer sb = new StringBuffer();
+        ModelMap map = new ModelMap();
+        try {
+            Sort sort = new Sort(Sort.Direction.DESC, "created");
+            Pageable pageable = new PageRequest(Integer.parseInt(page)-1, 2, sort);
+            Page<Xmind> pagae = xmindService.findByName(name, pageable);
+            pagae.getContent().forEach((Xmind xm)->sb.append("<li><label>"+xm.getUsername()+"</label><p>"+xm.getDownloads()+"</p></li>"));
+            map.put("list",sb);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  map;
     }
 
     @RequestMapping("/getUserXmindList")

@@ -62,7 +62,7 @@ public class XmindServiceImpl implements XmindService {
 	public List<XmindVo> getDownTop100(int pageSize)  {
 		//return xmindDao.getDownTop100(pageable);
 		Session session = entityManager.unwrap(org.hibernate.Session.class);
-		String sql = "select username,gravatar, SUM(downloads) as downloads from xmind group by username order by downloads desc limit ?";
+		String sql = "select username,gravatar, SUM(downloads) as downloads from xmind group by username, gravatar order by downloads desc limit ?";
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setParameter(0,pageSize);
 		query.addScalar("username", StandardBasicTypes.STRING);

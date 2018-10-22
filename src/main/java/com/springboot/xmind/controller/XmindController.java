@@ -97,7 +97,7 @@ public class XmindController extends BaseController{
 		//Sort sort = new Sort(Sort.Direction.DESC, "downloads");
 		//Pageable pageable = new PageRequest(0, 100, sort);
 		List<XmindVo> pageRe = null;
-		int pageSize = 4;
+		int pageSize = 30;
 		try {
 			pageRe = xmindService.getDownTop100(pageSize);
 		} catch (Exception e) {

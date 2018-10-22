@@ -38,26 +38,26 @@
               <!-- Profile Image -->
               <div class="box box-primary">
                 <div class="box-body box-profile">
-                  <img class="profile-user-img img-responsive img-circle" id="userpic" src="" alt="User profile picture">
-
-                  <h3 class="profile-username text-center" id="name">Nina Mcintire</h3>
-
-                  <p class="text-muted text-center">
-                      <span id="firstname"></span>
-                      <span id="lastname"></span>
-                  </p>
-
-                  <ul class="list-group list-group-unbordered">
-                    <li class="list-group-item">
-                      <b>总发布数</b> <a class="pull-right" id="count">1,322</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>总下载量</b> <a class="pull-right" id="downs">543</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>总预览量</b> <a class="pull-right" id="views">13,287</a>
-                    </li>
-                  </ul>
+                    <!--style="background: url('../dist/img/photo1.png')"-->
+                    <div >
+                        <img class="profile-user-img img-responsive img-circle" id="userpic" src="" alt="User profile picture">
+                        <h3 class="profile-username text-center" id="name">Nina Mcintire</h3>
+                        <p class="text-muted text-center">
+                            <span id="firstname"></span>
+                            <span id="lastname"></span>
+                        </p>
+                    </div>
+                    <ul class="list-group list-group-unbordered">
+                      <li class="list-group-item">
+                        <b>总发布数</b> <a class="pull-right" id="count">1,322</a>
+                      </li>
+                      <li class="list-group-item">
+                        <b>总下载量</b> <a class="pull-right" id="downs">543</a>
+                      </li>
+                      <li class="list-group-item">
+                        <b>总预览量</b> <a class="pull-right" id="views">13,287</a>
+                      </li>
+                    </ul>
 
                   <!--<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>-->
                 </div>
@@ -111,13 +111,13 @@
                 <div class="col-md-6" style="min-height: 500px;">
                     <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                  <!--<li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-                  <li><a href="#timeline" data-toggle="tab">Timeline</a></li>-->
-                  <li class="active"><a href="#settings" data-toggle="tab">所有发布</a></li>
+                  <li class="active"><a href="#activity" data-toggle="tab">发布日志</a></li>
+                  <!--<li><a href="#timeline" data-toggle="tab">Timeline</a></li>-->
+                  <li><a href="#settings" data-toggle="tab">所有发布</a></li>
                 </ul>
                 <div class="tab-content">
-                  <!--<div class="active tab-pane" id="activity">
-                    &lt;!&ndash; Post &ndash;&gt;
+                  <div class="active tab-pane" id="activity">
+                    <!-- Post -->
                     <div class="post">
                       <div class="user-block">
                         <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
@@ -127,7 +127,7 @@
                             </span>
                         <span class="description">Shared publicly - 7:30 PM today</span>
                       </div>
-                      &lt;!&ndash; /.user-block &ndash;&gt;
+                      <!-- /.user-block -->
                       <p>
                         Lorem ipsum represents a long-held tradition for designers,
                         typographers and the like. Some people hate it and argue for
@@ -146,9 +146,9 @@
 
                       <input class="form-control input-sm" type="text" placeholder="Type a comment">
                     </div>
-                    &lt;!&ndash; /.post &ndash;&gt;
+                    <!-- /.post -->
 
-                    &lt;!&ndash; Post &ndash;&gt;
+                    <!-- Post -->
                     <div class="post clearfix">
                       <div class="user-block">
                         <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
@@ -158,7 +158,7 @@
                             </span>
                         <span class="description">Sent you a message - 3 days ago</span>
                       </div>
-                      &lt;!&ndash; /.user-block &ndash;&gt;
+                      <!-- /.user-block -->
                       <p>
                         Lorem ipsum represents a long-held tradition for designers,
                         typographers and the like. Some people hate it and argue for
@@ -178,9 +178,9 @@
                         </div>
                       </form>
                     </div>
-                    &lt;!&ndash; /.post &ndash;&gt;
+                    <!-- /.post -->
 
-                    &lt;!&ndash; Post &ndash;&gt;
+                    <!-- Post -->
                     <div class="post">
                       <div class="user-block">
                         <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
@@ -190,12 +190,12 @@
                             </span>
                         <span class="description">Posted 5 photos - 5 days ago</span>
                       </div>
-                      &lt;!&ndash; /.user-block &ndash;&gt;
+                      <!-- /.user-block -->
                       <div class="row margin-bottom">
                         <div class="col-sm-6">
                           <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
                         </div>
-                        &lt;!&ndash; /.col &ndash;&gt;
+                        <!-- /.col -->
                         <div class="col-sm-6">
                           <div class="row">
                             <div class="col-sm-6">
@@ -203,19 +203,19 @@
                               <br>
                               <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
                             </div>
-                            &lt;!&ndash; /.col &ndash;&gt;
+                            <!-- /.col -->
                             <div class="col-sm-6">
                               <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
                               <br>
                               <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
                             </div>
-                            &lt;!&ndash; /.col &ndash;&gt;
+                            <!-- /.col -->
                           </div>
-                          &lt;!&ndash; /.row &ndash;&gt;
+                          <!-- /.row -->
                         </div>
-                        &lt;!&ndash; /.col &ndash;&gt;
+                        <!-- /.col -->
                       </div>
-                      &lt;!&ndash; /.row &ndash;&gt;
+                      <!-- /.row -->
 
                       <ul class="list-inline">
                         <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
@@ -228,10 +228,28 @@
 
                       <input class="form-control input-sm" type="text" placeholder="Type a comment">
                     </div>
-                    &lt;!&ndash; /.post &ndash;&gt;
+                    <!-- /.post -->
+
+                      <div class="content-center">
+                          <ul class="content-center-ul" id="content"><!--这里是用来加载初始数据和翻页数据的容器-->
+                              <li class="item" th:each="item : ${page}"><!--这里接收后台的list预先加载几条数据显示-->
+                                  <label th:text="${item.username}"></label>
+                                  <p th:text="${item.downloads}"></p>
+                              </li>
+                          </ul>
+                          <div id="pages" align="center" style="display: none;"><!--这里在数据底部显示一个下一页按钮-->
+                              <a id="next" href="../blog/getUserContent?page=0">下一页</a>
+                          </div>
+                          <div class="loading"></div><!--这里是loading选择器用来显示加载数据的一些信息-->
+                          <p>
+                              <button class="view-more-button">View more</button>
+                          </p>
+                      </div>
+
+
                   </div>
-                  &lt;!&ndash; /.tab-pane &ndash;&gt;
-                  <div class="tab-pane" id="timeline">
+                  <!-- /.tab-pane -->
+                  <!--<div class="tab-pane" id="timeline">
                     &lt;!&ndash; The timeline &ndash;&gt;
                     <ul class="timeline timeline-inverse">
                       &lt;!&ndash; timeline time label &ndash;&gt;
@@ -327,7 +345,7 @@
                   </div>-->
                   <!-- /.tab-pane -->
 
-                  <div class="active tab-pane" id="settings">
+                  <div class="tab-pane" id="settings">
                       <div class="box-body table-responsive">
                           <table class="table table-hover" style="width:100%;margin-top:15px;" id="datatable">
                               <thead>
@@ -497,5 +515,6 @@
 <script type="text/javascript" src="../plugins/bootstrap-slider/bootstrap-slider.js"></script>
 <script type="text/javascript" src="../home/js/common/dataTableParam.js"></script>
 <script type="text/javascript" src="../home/js/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../home/js/common/jquery.infinitescroll.js"></script>
 <script type="text/javascript" src="../xmind/blog.js"></script>
 </html>

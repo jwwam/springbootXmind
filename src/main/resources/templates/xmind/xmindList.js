@@ -348,18 +348,20 @@ function getDownList(){
         },
         success: function (result) {
             if(result.status=="1"){
-                //$("#downloadBtn").attr("href", downUrl);
-                //alert(result.data);
-                console.log(result.data.length);
+                var li = "";
                 for(var i=0;i<result.data.length;i++){
-                    if(i=0){
-                        $("#downTopImg").attr("src", result.data[0].gravatar);
-                        $("#downTopName").attr("src", result.data[0].username);
-                        $("#downTopNum").attr("src", result.data[0].downloads);
+                    if(i==0){
+                        $("#downTop1").val(result.data[i].username);
+                        $("#downTopImg").attr("src", result.data[i].gravatar);
+                        $("#downTopName").text("用户名："+result.data[i].username);
+                        $("#downTopNum").text("下载数："+result.data[i].downloads+"条");
+                    }else if(i>9){
+                        li = li+"<li style='display: none;' class='displayLi'><a href=\"../blog/index?name="+ result.data[i].username +"\" target='_blank'>"+ "<span style='color: orange;'>"+ (i+1) +".&nbsp;&nbsp;&nbsp;</span>" + result.data[i].username +"<span class=\"pull-right badge bg-blue\">" + result.data[i].downloads + "条</span></a></li>"
                     }else{
-                        
+                        li = li+"<li><a href=\"../blog/index?name="+ result.data[i].username +"\" target='_blank'>"+ "<span style='color: orange;'>"+ (i+1) +".&nbsp;&nbsp;&nbsp;</span>" + result.data[i].username +"<span class=\"pull-right badge bg-blue\">" + result.data[i].downloads + "条</span></a></li>"
                     }
                 }
+                $("#downTopList").append(li);
             }else{
                 alert(result.msg);
             }
@@ -373,4 +375,22 @@ function getDownList(){
             alert("下载出错");
         }
     });
+
+    $("#downTop1Click").on("click",function () {
+        window.open("../blog/index?name="+$("#downTop1").val());
+    });
+
+    $("#moreTop").on("click",function () {
+        $("#moreTop").hide();
+        $("#closeMoreTop").show();
+        $(".displayLi").show();
+    });
+
+    $("#closeMoreTop").on("click",function () {
+        $("#moreTop").show();
+        $("#closeMoreTop").hide();
+        $(".displayLi").hide();
+        scrollTo(0,0);
+    });
+
 }

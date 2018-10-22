@@ -213,21 +213,22 @@
                 <h3 class="box-title">下载榜</h3>
               </div>
               <!-- Add the bg color to the header using any of the bg-* classes -->
-              <div class="widget-user-header bg-yellow">
+              <div class="widget-user-header bg-blue" style="cursor: pointer;" id="downTop1Click">
+                <input hidden="hidden" id="downTop1" />
                 <div class="widget-user-image">
+                  <!--<span>1.&nbsp;&nbsp;&nbsp;</span>-->
                   <img class="img-circle" id="downTopImg" src="../dist/img/user7-128x128.jpg" alt="User Avatar">
                 </div>
                 <!-- /.widget-user-image -->
-                <h3 class="widget-user-username" id="downTopName">Nadia Carmichael</h3>
-                <h5 class="widget-user-desc" id="downTopNum">Lead Developer</h5>
+                <h2 class="widget-user-username" id="downTopName">Nadia Carmichael</h2>
+                <h4 class="widget-user-desc" id="downTopNum">Lead Developer</h4>
               </div>
+
               <div class="box-footer no-padding">
-                <ul class="nav nav-stacked">
-                  <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
-                  <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
-                  <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
-                  <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+                <ul class="nav nav-stacked" id="downTopList">
                 </ul>
+                <a href="###" class="btn btn-primary btn-block" id="moreTop"><b>更多</b></a>
+                <a href="###" class="btn btn-primary btn-block" id="closeMoreTop" style="display: none;"><b>关闭</b></a>
               </div>
             </div>
             <!-- /.widget-user -->
