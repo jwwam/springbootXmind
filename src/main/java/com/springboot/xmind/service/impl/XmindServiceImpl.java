@@ -49,6 +49,11 @@ public class XmindServiceImpl implements XmindService {
 	}
 
 	@Override
+	public Page<Xmind> getDownTop100(Pageable pageable)  {
+		return xmindDao.getDownTop100(pageable);
+	}
+
+	@Override
 	public List<Xmind> findByName(String name) {
 		return xmindDao.findByUsername(name);
 	}

@@ -37,7 +37,30 @@ public interface XmindService {
 
     void save(Xmind xmind);
 
+    /**
+     * @auther: zhangyingqi
+     * @date: 11:39 2018/10/22 
+     * @param: [name]
+     * @return: java.util.List<com.springboot.xmind.entity.Xmind>
+     * @Description: 通过username得到其全部发布
+     */
     List<Xmind> findByName(String name);
 
+    /**
+     * @auther: zhangyingqi
+     * @date: 11:40 2018/10/22 
+     * @param: [name, pageable]
+     * @return: org.springframework.data.domain.Page<com.springboot.xmind.entity.Xmind>
+     * @Description: 同上，加入分页
+     */
     Page<Xmind> findByName(String name, Pageable pageable);
+
+    /**
+     * @auther: zhangyingqi
+     * @date: 11:41 2018/10/22 
+     * @param: [name, pageable]
+     * @return: org.springframework.data.domain.Page<com.springboot.xmind.entity.Xmind>
+     * @Description: 获取下载量top100的用户
+     */
+    Page<Xmind> getDownTop100(Pageable pageable);
 }

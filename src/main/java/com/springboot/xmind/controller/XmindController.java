@@ -10,6 +10,8 @@ import com.springboot.xmind.service.XmindService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,6 +87,17 @@ public class XmindController extends BaseController{
 		//String realurl = links.get("default").toString();
 		String realurl = json.get("downloadUrl")+"";
 		return  getModelMap(StateParameter.SUCCESS, realurl,"操作成功");
+	}
+
+	@RequestMapping("/getDownList")
+	@ResponseBody
+	public ModelMap getDownList(){
+		ModelMap map = new ModelMap();
+		Sort sort = new Sort(Sort.Direction.DESC, "downloads");
+		Pageable pageable = new PageRequest(0, 100, sort);
+		Page<Xmind> pageRe = xmindService.getDownTop100(pageable);
+		map.put("list", pageRe.getContent());
+		return map;
 	}
 
 }

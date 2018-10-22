@@ -28,5 +28,10 @@ public interface XmindDao extends PagingAndSortingRepository<Xmind, Long>,JpaSpe
 
     @Query("from Xmind x where x.username = ?1")
     List<Xmind> findByUsername(String username);
+    //@Query("select distinct(icbd.reason) from ICBReportData icbd where icbd.registerNo = ?1")
+    //select userName, SUM(downloads) downloads from t_xmind group by username order by downloads desc
+    @Query("select userName, SUM(downloads) from Xmind x group by x.username")
+    Page<Xmind> getDownTop100(Pageable pageable);
+
 }
 

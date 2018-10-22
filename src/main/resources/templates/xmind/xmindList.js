@@ -2,6 +2,7 @@ $(function () {
 
     bindDataTables();
     bindHotDataTables();
+    getDownList();
 
     function bindDataTables() {
         $("#datatable").dataTable({
@@ -327,6 +328,40 @@ function downModal(idName){
             // window.Ewin.alert('远程调用成功，状态文本值：'+textStatus);
             $(".loading").hide();
             $("#tab-content").show();
+        },
+        error: function () {
+            alert("下载出错");
+        }
+    });
+}
+
+function getDownList(idName){
+    $.ajax({
+        type: 'post',
+        url: "../xmind/getDownList",
+        dataType: "json",
+        async: false,
+        data : {
+            idname : idName
+        },
+        beforeSend:function(XMLHttpRequest){
+            //$(".loading").show();
+            //$("#tab-content").hide();
+            //scrollTo(0,0);
+            //显示文字 $("#loading").html.("<img src='/jquery/images/loading.gif' />");
+        },
+        success: function (result) {
+            if(result.status=="1"){
+                //$("#downloadBtn").attr("href", downUrl);
+                window.location.href = result.data;
+            }else{
+                alert(result.msg);
+            }
+        },
+        complete:function(XMLHttpRequest,textStatus){
+            // window.Ewin.alert('远程调用成功，状态文本值：'+textStatus);
+            //$(".loading").hide();
+            //$("#tab-content").show();
         },
         error: function () {
             alert("下载出错");
