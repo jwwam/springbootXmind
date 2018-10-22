@@ -1,6 +1,7 @@
 package com.springboot.xmind.service;
 
 import com.springboot.xmind.entity.Xmind;
+import com.springboot.xmind.entity.XmindVo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -62,5 +63,5 @@ public interface XmindService {
      * @return: org.springframework.data.domain.Page<com.springboot.xmind.entity.Xmind>
      * @Description: 获取下载量top100的用户
      */
-    Page<Xmind> getDownTop100(Pageable pageable);
+    List<XmindVo> getDownTop100(int pageSize);
 }

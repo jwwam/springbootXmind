@@ -1,6 +1,7 @@
 package com.springboot.xmind.dao;
 
 import com.springboot.xmind.entity.Xmind;
+import com.springboot.xmind.entity.XmindVo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,8 +31,8 @@ public interface XmindDao extends PagingAndSortingRepository<Xmind, Long>,JpaSpe
     List<Xmind> findByUsername(String username);
     //@Query("select distinct(icbd.reason) from ICBReportData icbd where icbd.registerNo = ?1")
     //select userName, SUM(downloads) downloads from t_xmind group by username order by downloads desc
-    @Query("select username, SUM(downloads) as downloads from Xmind x group by x.username")
-    Page<Xmind> getDownTop100(Pageable pageable);
+    //@Query("select username, gravatar, SUM(downloads) as downloads from Xmind x group by x.username")
+    //Page<XmindVo> getDownTop100(Pageable pageable);
 
 }
 

@@ -349,7 +349,17 @@ function getDownList(){
         success: function (result) {
             if(result.status=="1"){
                 //$("#downloadBtn").attr("href", downUrl);
-                alert(result.data);
+                //alert(result.data);
+                console.log(result.data.length);
+                for(var i=0;i<result.data.length;i++){
+                    if(i=0){
+                        $("#downTopImg").attr("src", result.data[0].gravatar);
+                        $("#downTopName").attr("src", result.data[0].username);
+                        $("#downTopNum").attr("src", result.data[0].downloads);
+                    }else{
+                        
+                    }
+                }
             }else{
                 alert(result.msg);
             }

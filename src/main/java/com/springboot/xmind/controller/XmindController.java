@@ -6,6 +6,7 @@ import com.springboot.xmind.base.utils.BuildPageRequest;
 import com.springboot.xmind.base.utils.HttpUtils;
 import com.springboot.xmind.base.utils.StateParameter;
 import com.springboot.xmind.entity.Xmind;
+import com.springboot.xmind.entity.XmindVo;
 import com.springboot.xmind.service.XmindService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 @RequestMapping("/xmind")
@@ -92,10 +94,16 @@ public class XmindController extends BaseController{
 	@RequestMapping("/getDownList")
 	@ResponseBody
 	public ModelMap getDownList(){
-		Sort sort = new Sort(Sort.Direction.DESC, "downloads");
-		Pageable pageable = new PageRequest(0, 100, sort);
-		Page<Xmind> pageRe = xmindService.getDownTop100(pageable);
-		return  getModelMap(StateParameter.SUCCESS, pageRe.getContent(),"操作成功");
+		//Sort sort = new Sort(Sort.Direction.DESC, "downloads");
+		//Pageable pageable = new PageRequest(0, 100, sort);
+		List<XmindVo> pageRe = null;
+		int pageSize = 4;
+		try {
+			pageRe = xmindService.getDownTop100(pageSize);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return  getModelMap(StateParameter.SUCCESS, pageRe,"操作成功");
 	}
 
 }
