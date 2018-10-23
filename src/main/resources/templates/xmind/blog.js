@@ -3,28 +3,25 @@ $(function () {
     bindDataTables();
     getUserInfo();
 
+
     $('#content').infinitescroll({
-            /*loading: {
+            loading: {
                 msgText: "",
                 img: "/images/loading.gif",
                 finishedMsg: '没有新数据了...',
-                selector: '.loading' //loading选择器
-            },*/
-            button: '.view-more-button',
-            scrollThreshold: false,
-            status: '.page-load-status',
-            history: false,
-            hideNav: '#pages',
-            navSelector: "#pages",//导航的选择器，会被隐藏
-            nextSelector: "#next",//包含下一页链接的选择器
-            itemSelector: "li",//你将要取回的选项(内容块)
+                selector: '.dataLoading' //loading选择器
+            },
+            navSelector: "#next",//导航的选择器，会被隐藏
+            nextSelector: "#next a",//包含下一页链接的选择器
+            itemSelector: ".post",//你将要取回的选项(内容块)
             debug: false, //启用调试信息，若启用必须引入debug.js
-            dataType: 'json',//格式要和itemSelector保持一致
+            dataType: 'html',//格式要和itemSelector保持一致
             template: function(data) {
                 //data表示服务端返回的json格式数据，这里需要把data转换成瀑布流块的html格式，然后返回给回到函数
-                //console.log(data.list);
+                console.log("进入数据格式化");
+                console.log(data);
                 //return '<li><label>测试数据1</label><p>测试数据1</p></li><li><label>测试数据2</label><p>测试数据2</p></li>';
-                return data.list;
+                return data;
             },
             maxPage: 5,//最大加载的页数
             animate: true, //当有新数据加载进来的时候，页面是否有动画效果，默认没有
@@ -34,14 +31,32 @@ $(function () {
 
             },
             path: function(index) { //获取下一页方法
+                console.log("进入获取下一页方法");
                 var name = $('#username').val();
+                console.log(name);
                 return "../blog/getUserContent?page=" + index+"&name=" + name;
             },
         },
         function(newElements, data, url) { //回调函数
             //console.log(data);
-            //alert(url);
+            //console.log(url);
         });
+
+    // 取消scroll绑定
+    //$(window).unbind('.infscr');
+
+    /*$('#next').click(function(){
+        console.log("点击了下一页");
+        //$(document).trigger('retrieve.infscr');
+        $('#content').infinitescroll('retrieve');
+        console.log("执行了恢复加载");
+    });*/
+
+    // 如果没有下一页，去掉分页
+    /*$(document).ajaxError(function(e,xhr,opt){
+        if (xhr.status == 404) $('#next').remove();
+    });
+    $('#next').show();*/
 
 
     function bindDataTables() {

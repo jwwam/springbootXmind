@@ -33,7 +33,7 @@ public class BlogController extends BaseController {
         request.setAttribute("username", name);
         try {
             Sort sort = new Sort(Sort.Direction.DESC, "created");
-            Pageable pageable = new PageRequest(0, 2, sort);
+            Pageable pageable = new PageRequest(0, 5, sort);
             Page<Xmind> pagae = xmindService.findByName(name, pageable);
             request.setAttribute("page", pagae.getContent());
         }catch (Exception e){
@@ -44,19 +44,24 @@ public class BlogController extends BaseController {
 
     @RequestMapping(value="/getUserContent")
     @ResponseBody
-    public ModelMap getUserContent(String name, String page){
+    public String getUserContent(String name, String page){
         StringBuffer sb = new StringBuffer();
         ModelMap map = new ModelMap();
         try {
             Sort sort = new Sort(Sort.Direction.DESC, "created");
-            Pageable pageable = new PageRequest(Integer.parseInt(page)-1, 2, sort);
+            Pageable pageable = new PageRequest(Integer.parseInt(page)-1, 5, sort);
             Page<Xmind> pagae = xmindService.findByName(name, pageable);
-            pagae.getContent().forEach((Xmind xm)->sb.append("<li><label>"+xm.getUsername()+"</label><p>"+xm.getDownloads()+"</p></li>"));
+            pagae.getContent().forEach((Xmind xm)->{
+                //String html = "<li class='item'><label>"+xm.getUsername()+"</label><p>"+xm.getDownloads()+"</p></li>";
+                //sb.append(html);
+                sb.append(backHtml(xm));
+            });
+
             map.put("list",sb);
         }catch (Exception e){
             e.printStackTrace();
         }
-        return  map;
+        return sb.toString();
     }
 
     @RequestMapping("/getUserXmindList")
@@ -90,6 +95,44 @@ public class BlogController extends BaseController {
             return getModelMap(StateParameter.SUCCESS, map, "操作成功");
         }
         return getModelMap(StateParameter.FAULT, "","操作失败");
+    }
+
+    public String backHtml(Xmind x){
+        StringBuffer sb = new StringBuffer();
+        sb.append(
+                "<div class=\"post\">\n" +
+                " <div class=\"user-block\">\n" +
+                "     <img class=\"img-circle img-bordered-sm\" src=\""+ x.getGravatar() +"\" alt=\"User Image\">\n" +
+                "     <span class=\"username\">\n" +
+                "   <a href=\"#\">"+ x.getUsername() +"</a>\n" +
+                "   <a href=\"#\" class=\"pull-right btn-box-tool\"><i class=\"fa fa-times\"></i></a>\n" +
+                " </span>\n" +
+                "     <span class=\"description\">Posted 5 photos - 5 days ago</span>\n" +
+                " </div>\n" +
+                " <!--文本-->\n" +
+                " <p>发布了《<span>"+ x.getTopic() +"</span>》</p>\n" +
+                " <!-- /.user-block -->\n" +
+                " <!--图片-->\n" +
+                " <div class=\"row margin-bottom\">\n" +
+                "     <div class=\"col-sm-6\">\n" +
+                "         <img class=\"img-responsive\" src=\""+ x.getThumbnailurl() +"\" style=\"max-height: 320px;max-width: 480px;\" width=\"360\" height=\"240\" alt=\"Photo\">\n" +
+                "     </div>\n" +
+                "     <!-- /.col -->\n" +
+                " </div>\n" +
+                " <!-- /.row -->\n" +
+                " <!--点赞-->\n" +
+                " <ul class=\"list-inline\">\n" +
+                "     <li><a href=\"#\" class=\"link-black text-sm\"><i class=\"fa fa-share margin-r-5\"></i> Share("+ x.getDownloads() +")</a></li>\n" +
+                "     <li><a href=\"#\" class=\"link-black text-sm\"><i class=\"fa fa-thumbs-o-up margin-r-5\"></i> Like</a>\n" +
+                "     </li>\n" +
+                "     <li class=\"pull-right\">\n" +
+                "         <a href=\"#\" class=\"link-black text-sm\"><i class=\"fa fa-comments-o margin-r-5\"></i> Comments\n" +
+                "   (5)</a></li>\n" +
+                " </ul>\n" +
+                " <input class=\"form-control input-sm\" type=\"text\" placeholder=\"Type a comment\">\n" +
+                " </div>"
+        );
+        return sb.toString();
     }
 
 }

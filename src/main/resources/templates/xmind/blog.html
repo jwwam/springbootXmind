@@ -118,7 +118,7 @@
                 <div class="tab-content">
                   <div class="active tab-pane" id="activity">
                     <!-- Post -->
-                    <div class="post">
+                    <!--<div class="post">
                       <div class="user-block">
                         <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
                         <span class="username">
@@ -127,7 +127,7 @@
                             </span>
                         <span class="description">Shared publicly - 7:30 PM today</span>
                       </div>
-                      <!-- /.user-block -->
+                      &lt;!&ndash; /.user-block &ndash;&gt;
                       <p>
                         Lorem ipsum represents a long-held tradition for designers,
                         typographers and the like. Some people hate it and argue for
@@ -145,11 +145,11 @@
                       </ul>
 
                       <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                    </div>
+                    </div>-->
                     <!-- /.post -->
 
                     <!-- Post -->
-                    <div class="post clearfix">
+                    <!--<div class="post clearfix">
                       <div class="user-block">
                         <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
                         <span class="username">
@@ -158,7 +158,7 @@
                             </span>
                         <span class="description">Sent you a message - 3 days ago</span>
                       </div>
-                      <!-- /.user-block -->
+                      &lt;!&ndash; /.user-block &ndash;&gt;
                       <p>
                         Lorem ipsum represents a long-held tradition for designers,
                         typographers and the like. Some people hate it and argue for
@@ -177,74 +177,61 @@
                           </div>
                         </div>
                       </form>
-                    </div>
+                    </div>-->
                     <!-- /.post -->
 
                     <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-                        <span class="username">
-                              <a href="#">Adam Jones</a>
-                              <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                            </span>
-                        <span class="description">Posted 5 photos - 5 days ago</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <div class="row margin-bottom">
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                          <div class="row">
-                            <div class="col-sm-6">
-                              <img class="img-responsive" src="../../dist/img/photo2.png" alt="Photo">
-                              <br>
-                              <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-6">
-                              <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
-                              <br>
-                              <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-                            </div>
-                            <!-- /.col -->
+                      <div id="content">
+                          <div class="post" th:each="item : ${page}">
+                              <div class="user-block">
+                                  <img class="img-circle img-bordered-sm" th:src="${item.gravatar}" alt="User Image">
+                                  <span class="username">
+                                      <a href="#" th:text="${item.username}">Adam Jones</a>
+                                      <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                                    </span>
+                                  <span class="description">Posted 5 photos - 5 days ago</span>
+                              </div>
+                              <!--文本-->
+                              <p>发布了《<span th:text="${item.topic}"></span>》</p>
+                              <!-- /.user-block -->
+                              <!--图片-->
+                              <div class="row margin-bottom">
+                                  <div class="col-sm-6">
+                                      <img class="img-responsive" th:src="${item.thumbnailurl}" style="max-height: 320px;max-width: 480px;" width="480" height="320" alt="Photo">
+                                  </div>
+                              </div>
+                              <!-- /.row -->
+                              <!--点赞-->
+                              <ul class="list-inline">
+                                  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share(<span th:text="${item.downloads}"></span>)</a></li>
+                                  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                                  </li>
+                                  <li class="pull-right">
+                                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                                          (5)</a></li>
+                              </ul>
+                              <input class="form-control input-sm" type="text" placeholder="Type a comment">
                           </div>
-                          <!-- /.row -->
-                        </div>
-                        <!-- /.col -->
                       </div>
-                      <!-- /.row -->
 
-                      <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                        </li>
-                        <li class="pull-right">
-                          <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                            (5)</a></li>
-                      </ul>
-
-                      <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                    </div>
+                      <div id="next" align="center" style="display: none;"><!--这里在数据底部显示一个下一页按钮-->
+                          <a href="../blog/getUserContent?page=2">下一页</a>
+                      </div>
+                      <div class="dataLoading" style="text-align: center;"></div><!--这里是loading选择器用来显示加载数据的一些信息-->
                     <!-- /.post -->
 
-                      <div class="content-center">
-                          <ul class="content-center-ul" id="content"><!--这里是用来加载初始数据和翻页数据的容器-->
-                              <li class="item" th:each="item : ${page}"><!--这里接收后台的list预先加载几条数据显示-->
+                      <!--<div class="content-center">
+                          <ul class="content-center-ul" id="content">&lt;!&ndash;这里是用来加载初始数据和翻页数据的容器&ndash;&gt;
+                              <li class="item" th:each="item : ${page}">&lt;!&ndash;这里接收后台的list预先加载几条数据显示&ndash;&gt;
                                   <label th:text="${item.username}"></label>
                                   <p th:text="${item.downloads}"></p>
                               </li>
                           </ul>
-                          <div id="pages" align="center" style="display: none;"><!--这里在数据底部显示一个下一页按钮-->
-                              <a id="next" href="../blog/getUserContent?page=0">下一页</a>
+                          <div id="next" align="center" style="display: none;">&lt;!&ndash;这里在数据底部显示一个下一页按钮&ndash;&gt;
+                              <a href="../blog/getUserContent?page=2">下一页</a>
                           </div>
-                          <div class="loading"></div><!--这里是loading选择器用来显示加载数据的一些信息-->
-                          <p>
-                              <button class="view-more-button">View more</button>
-                          </p>
-                      </div>
+                          <div class="dataLoading" style="text-align: center;"></div>&lt;!&ndash;这里是loading选择器用来显示加载数据的一些信息&ndash;&gt;
+                      </div>-->
 
 
                   </div>
