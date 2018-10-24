@@ -1,0 +1,61 @@
+﻿nav ul{list-style:none}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent;text-decoration:none;cursor:pointer}
+ul,ol{list-style:none;list-style-image:none;margin:0;padding:0}
+input,select{vertical-align:middle;font-family:'Microsoft Yahei'}
+input[type=text]::-ms-clear,input[type=tel]::-ms-clear,input[type=number]::-ms-clear{display:none}
+input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px white inset !important}
+*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+
+#loginModal .col-left,#loginModal .col-right{float:left}
+
+.globalLoginBtn{display:block;
+    height: 100%;
+    line-height: 38px;
+    padding: 0 18px;
+
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    opacity: .9;
+    filter: alpha(opacity=90);}
+.globalLoginBtn:hover{
+    background-color: #009688!important;
+}
+
+#loginModal .col-left{width:225px;height:319px;}
+#loginModal .col-right{width:313px;height:319px;color:#b2b2b2}
+#loginModal .form-group{margin-bottom:10px}
+#loginModal .modal-body{height:263px}
+#loginModal #btnRegister{color:#ff9600}
+#loginModal .tips-error{padding:2px 10px;margin-top:10px;display:none}
+#loginModal .globalLogin{height:47px;background:#01c26f;color:#fff;font-size:14px;background:-webkit-linear-gradient(#1fd783,#1fd06b);background:-o-linear-gradient(#1fd783,#1fd06b);background:-moz-linear-gradient(#1fd783,#1fd06b);background:linear-gradient(#1fd783,#1fd06b)}
+#loginModal .threeLogin{position:absolute;left:30px;bottom:15px}
+#loginModal .threeLogin span{color:#b3c3c0;float:left;font-size:14px}
+#loginModal .threeLogin a{display:inline-block;width:20px;height:20px;background:url(../images/login/login_img.png) no-repeat;vertical-align:middle;margin-left:15px;cursor:pointer}
+#loginModal .threeLogin .nqq{background-position:0 0}
+#loginModal .threeLogin .nqq:hover{background-position:0 -20px}
+#loginModal .threeLogin .nwx{background-position:-20px 0}
+#loginModal .threeLogin .nwx:hover{background-position:-20px -20px}
+#loginModal .threeLogin .nwb{background-position:-40px 0}
+#loginModal .threeLogin .nwb:hover{background-position:-40px -20px}
+.v5-input-txt{padding:0 15px 10px}
+.v5-input-txt .form-control{height:42px;line-height:normal;padding-bottom:10px;padding-top:10px}
+.v5-input-txt #id_mobile_code_f,.v5-input-txt .send-verify{float:left}
+.v5-input-txt #id_mobile_code_f{width:170px;border-radius:0;margin-right:24px}
+.v5-input-txt .send-verify{width:144px;height:42px;line-height:30px;background:#5ecfb5;color:#fff;text-align:center;padding:0;cursor:pointer;border:0}
+.v5-input-txt .btn{padding-bottom:8px;padding-top:8px}
+.btn{background:#5ecfba;border-color:#5ecfba;color:#fff}
+.btn-micv5{background-color:#5ecfba;color:#fff;padding:8px 12px}
+.modal-header{color:#5ecfba}
+.fr{
+    float: right;}
+
+#loginModal .modal-content:before,#loginModal .modal-content:after,.v5-footer-links:before,.v5-footer-links:after{content:'';display:table;clear:both}
+
+.col_left,col_right{background-color:#fff}
+.login-box{width: 100%!important;}
+.form-control{border-radius:4px!important;}
