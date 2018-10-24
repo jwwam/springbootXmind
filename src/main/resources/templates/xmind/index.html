@@ -6,6 +6,7 @@
   <title>XMind模板之家</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="../xmind/index.css"/>
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -18,7 +19,7 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          这是新设计后的首页，借鉴于AdminLTE页面模板。
+          这是重新设计后的首页，借鉴于AdminLTE页面模板。
           <small>Example 2.0</small>
         </h1>
         <!--<ol class="breadcrumb">
@@ -30,6 +31,18 @@
 
       <!-- Main content -->
       <section class="content">
+
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-md-12">
+               <div class="info-box">
+                 <a class="a globalLoginBtn">登录</a>
+               </div>
+              <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+
         <div class="row">
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
@@ -345,9 +358,40 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="loginModal" style="display:none;">
+  <div class="modal-dialog modal-sm" style="width:540px;">
+    <div class="modal-content" style="border:none;">
+      <div class="col-left"></div>
+      <div class="col-right">
+        <div class="modal-header">
+          <button type="button" id="login_close" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px;">登录</h4>
+        </div>
+        <div class="modal-body">
+          <section class="box-login v5-input-txt" id="box-login">
+            <form id="login_form" action="" method="post" autocomplete="off">
+              <ul>
+                <li class="form-group"><input class="form-control" id="id_account_l" maxlength="50" name="account_l" placeholder="请输入邮箱账号/手机号" type="text"></li>
+                <li class="form-group"><input class="form-control" id="id_password_l" name="password_l" placeholder="请输入密码" type="password"></li>
+              </ul>
+            </form>
+            <p class="good-tips marginB10"><a id="btnForgetpsw" class="fr">忘记密码？</a>还没有账号？<a href="javascript:;" target="_blank" id="btnRegister">立即注册</a></p>
+            <div class="login-box marginB10">
+              <button id="login_btn" type="button" class="btn btn-micv5 btn-block globalLogin">登录</button>
+              <div id="login-form-tips" class="tips-error bg-danger" style="display: none;">错误提示</div>
+            </div>
+            <div class="threeLogin"><span>其他方式登录</span><a class="nqq" href="javascript:;"></a><a class="nwx" href="javascript:;"></a><!--<a class="nwb"></a>--></div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 <script type="text/javascript" src="../plugins/bootstrap-slider/bootstrap-slider.js"></script>
 <script type="text/javascript" src="../home/js/common/dataTableParam.js"></script>
 <script type="text/javascript" src="../home/js/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../xmind/modal.js"></script>
+<script type="text/javascript" src="../xmind/script.js"></script>
 <script type="text/javascript" src="../xmind/xmindList.js"></script>
 </html>
