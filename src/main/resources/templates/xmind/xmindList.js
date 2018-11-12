@@ -394,6 +394,7 @@ function getDownList(){
     });
 
     //登录操作
+/*
     function login_popup() {
         $("#loginModal").modal("show")
     }
@@ -412,5 +413,6 @@ function getDownList(){
                     o.html(t)
             })
     } ();
+*/
 
 }

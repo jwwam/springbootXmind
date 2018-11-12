@@ -1,6 +1,5 @@
 
 /**
- * @author xiexingbao
  * 权限管理
  * */
 $(function(){
