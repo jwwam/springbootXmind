@@ -1,6 +1,7 @@
 package com.springboot.xmind.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -36,6 +37,7 @@ public class Xmind extends BaseEntity  {
     //语言
     private String lang;
 
+    @Lob
     private String description;
 
     //预览量
@@ -273,5 +275,38 @@ public class Xmind extends BaseEntity  {
 
     public void setFileurl(String fileurl) {
         this.fileurl = fileurl;
+    }
+
+    @Override
+    public String toString() {
+        return "Xmind{" +
+                "idname='" + idname + '\'' +
+                ", userid=" + userid +
+                ", topic='" + topic + '\'' +
+                ", featured='" + featured + '\'' +
+                ", previewurl='" + previewurl + '\'' +
+                ", thumbnailurl='" + thumbnailurl + '\'' +
+                ", backgroundColor='" + backgroundColor + '\'' +
+                ", cxm='" + cxm + '\'' +
+                ", downloadable='" + downloadable + '\'' +
+                ", downloads=" + downloads +
+                ", lang='" + lang + '\'' +
+                ", description='" + description + '\'' +
+                ", views=" + views +
+                ", deleted='" + deleted + '\'' +
+                ", completed='" + completed + '\'' +
+                ", auth='" + auth + '\'' +
+                ", profilename='" + profilename + '\'' +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", created=" + created +
+                ", daily='" + daily + '\'' +
+                ", formatedTime=" + formatedTime +
+                ", gravatar='" + gravatar + '\'' +
+                ", fileurl='" + fileurl + '\'' +
+                ", id='" + id + '\'' +
+                '}';
     }
 }

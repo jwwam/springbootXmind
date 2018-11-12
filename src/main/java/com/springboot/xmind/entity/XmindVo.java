@@ -6,7 +6,7 @@ import java.math.BigInteger;
  * @ClassName: XmindVo
  * @Auther: zhangyingqi
  * @Date: 2018/10/22 14:35
- * @Description:
+ * @Description: 排行榜用
  */
 public class XmindVo {
     private String username;

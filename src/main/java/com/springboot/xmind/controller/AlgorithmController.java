@@ -42,12 +42,12 @@ public class AlgorithmController extends BaseController{
         int skipNum = 0;
         int sumNum = 0;
         int s = 0;
-        int e = 10;//默认获取十条
+        int e = 100;//默认获取十条
         Date lastTime = null;
-        if(StringUtils.isNotEmpty(start)){
+        if(StringUtils.isNotEmpty(start)&&Integer.parseInt(start)!=0){
             s = Integer.parseInt(start);
         }
-        if(StringUtils.isNotEmpty(end)){
+        if(StringUtils.isNotEmpty(end)&&Integer.parseInt(start)!=0){
             e = Integer.parseInt(end);
         }
         Page<Xmind> pageRe = xmindService.findLast(BuildPageRequest.getPageRequest(0, 1, Sort.Direction.DESC, "created"));
