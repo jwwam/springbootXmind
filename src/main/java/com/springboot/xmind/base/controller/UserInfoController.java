@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -100,10 +102,22 @@ public class UserInfoController extends BaseController {
 	 * 用户注册;
 	 * @return
 	 */
-	@RequestMapping("/regest")
+	@RequestMapping("/regist")
 	@ResponseBody
-	public ModelMap regest(UserInfo ui){
+	public ModelMap regist(HttpServletRequest request, UserInfo ui,String vcode){
 		logger.info("客户注册："+ui.getName() );
+
+		HttpSession session = request.getSession();
+		//转化成小写字母
+		vcode = vcode.toLowerCase();
+		String v = (String)session.getAttribute("_code");//还可以读取一次后把验证码清空，这样每次登录都必须获取验证码;
+		logger.info("获取保存vcode:"+v);
+		logger.info("验证vcode:"+vcode);
+		if(!vcode.equals(v)){
+			logger.info("对注册用户[" + ui.getUsername() + "]验证码不通过");
+			return getModelMap(StateParameter.FAULT,null,"验证码不正确");
+		}
+
 		UserInfo uis = userInfoService.findByUsername(ui.getUsername());
 		if(uis!=null){
 			return getModelMap(StateParameter.FAULT,"","注册失败，该账号已存在");
