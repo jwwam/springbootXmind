@@ -86,6 +86,7 @@ $(function () {
                     if( result.status == "1" ){
                         Ewin.alert(result.msg);
                         changeLogin(result.data.username, "");
+                        $('#login_form').bootstrapValidator('validate');
                         return false;
                     }
                     Ewin.alert(result.msg);
