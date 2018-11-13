@@ -7,6 +7,7 @@ import com.springboot.xmind.base.utils.HttpUtils;
 import com.springboot.xmind.base.utils.StateParameter;
 import com.springboot.xmind.entity.Xmind;
 import com.springboot.xmind.entity.XmindVo;
+import com.springboot.xmind.entity.user.UserInfo;
 import com.springboot.xmind.service.XmindService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -77,7 +79,12 @@ public class XmindController extends BaseController{
 
 	@RequestMapping(value = "getDownloadurl", method= RequestMethod.POST)
 	@ResponseBody
-	public ModelMap getDownloadurl(String idname){
+	public ModelMap getDownloadurl(HttpServletRequest request, String idname){
+		HttpSession session = request.getSession();
+		UserInfo user = (UserInfo)session.getAttribute("user");
+		if(user==null){
+			return getModelMap(StateParameter.FAULT, "","跳转登录");
+		}
 		String url = "https://www.xmind.net/share/api/maps/" + idname + "/downloadurl";
 		//请求该地址，获取真实下载地址
 		String result = HttpUtils.sendGetDownload(url);
@@ -88,7 +95,15 @@ public class XmindController extends BaseController{
 		//取出链接
 		//String realurl = links.get("default").toString();
 		String realurl = json.get("downloadUrl")+"";
-		return  getModelMap(StateParameter.SUCCESS, realurl,"操作成功");
+
+		List<Xmind> list = xmindService.findByName(idname);
+		//累加本地下载次数
+		if (list.size()>0){
+			Xmind x = list.get(0);
+			x.setLocaldown(x.getLocaldown()+1);
+			xmindService.save(x);
+		}
+		return getModelMap(StateParameter.SUCCESS, realurl,"操作成功");
 	}
 
 	@RequestMapping("/getDownList")
@@ -103,7 +118,7 @@ public class XmindController extends BaseController{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return  getModelMap(StateParameter.SUCCESS, pageRe,"操作成功");
+		return getModelMap(StateParameter.SUCCESS, pageRe,"操作成功");
 	}
 
 }

@@ -1,5 +1,7 @@
 $(function () {
 
+    initModal();
+
     //初始化验证框
     formValidator();
 
@@ -7,7 +9,11 @@ $(function () {
         $("#loginModal").modal("show");
     }
 
-    $(".globalLoginBtn").on("click", login_popup),function() {
+    $(".globalLoginBtn").on("click",function () {
+        login_popup();
+    });
+
+    /*$(".globalLoginBtn").on("click", login_popup),function() {
         console.log("执行login");
         var e = [];
         $(".modal").on("show.bs.modal",
@@ -21,7 +27,7 @@ $(function () {
                     t.children("div").html(a),
                     o.html(t)
             })
-    } ();
+    } ();*/
 
     function formValidator(){
         var againSubmit = false;
@@ -67,9 +73,8 @@ $(function () {
                 var id = "";
                 $.post($form.attr('action'), $form.serialize(), function(result) {
                     if(result.status=="0"){
-                        //Ewin.alert(result.msg);
                         againSubmit = true;
-                        formValidator();
+                        //显示回执信息
                         $("#login-form-tips").text(result.msg);
                         $("#login-form-tips").show();
                         var countdown = 8;
@@ -86,8 +91,36 @@ $(function () {
                     if( result.status == "1" ){
                         Ewin.alert(result.msg);
                         changeLogin(result.data.username, "");
-                        $('#login_form').bootstrapValidator('validate');
+                        resetForm();
                         return false;
+                    }
+                    if( result.status == "3" ){
+                        //登录失败
+                        againSubmit = true;
+                        //显示回执信息
+                        $("#login-form-tips").text(result.msg);
+                        $("#login-form-tips").show();
+                        //更换验证码
+                        changeValidateCode();
+                        var countdown = 8;
+                        var flag = setInterval(setTimeoutFunc,1000);
+                        function setTimeoutFunc(){
+                            if( countdown == 0 ){
+                                clearInterval(flag);
+                                resetForm();
+                                $("input[name='username']").val(result.data.username);
+                                $("input[name='password']").val(result.data.password);
+                                $("#vcode").val("");
+                            }
+                            countdown--;
+                        }
+                        return false;
+                    }
+                    if( result.status == "2" ){
+                        //登录成功
+                        againSubmit = true;
+                        resetForm();
+                        window.location.reload();
                     }
                     Ewin.alert(result.msg);
                 }, 'json');
@@ -119,19 +152,42 @@ $(function () {
     function changeLogin(username, password){
         $("input[name='username']").val(username);
         $("input[name='password']").val(password);
+        $("#vcode").val("");
+        changeValidateCode();
         $("#login_btn").show();
         $("#btnRegister").show();
         $("#regist_btn").hide();
         $("#btnLogin").hide();
         $("#loginModalLabel").text("登录");
-        $("#noaccount").text("还没有账号？");
-        $("#login_form").attr("action","../userInfo/loginUser");
+        $("#noaccount").text("没账号？3秒注册");
+        $("#login_form").attr("action","../login/loginUser");
     }
 
     function resetForm() {
+        //重置验证框
+        $("#login_form").data('bootstrapValidator').destroy();
+        $('#login_form').data('bootstrapValidator', null);
+        formValidator();
+        //隐藏提示信息
         $("#login-form-tips").val("");
         $("#login-form-tips").hide();
     }
+    
+    function initModal() {
+        var e = [];
+        $(".modal").on("show.bs.modal",
+            function() {
+                for (var s = 0; e.length > s; s++) e[s] && (e[s].modal("hide"), e[s] = null);
+                e.push($(this));
+                var o = $(this),
+                    a = o.find(".modal-dialog"),
+                    t = $('<div style="display:table; width:100%; height:100%;"></div>');
+                t.html('<div style="vertical-align:middle; display:table-cell;"></div>'),
+                    t.children("div").html(a),
+                    o.html(t)
+            })
+    }
+
 });
 
 

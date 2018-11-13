@@ -2,6 +2,7 @@ package com.springboot.xmind.base.controller;
 
 import com.springboot.xmind.base.utils.Captcha;
 import com.springboot.xmind.base.utils.GifCaptcha;
+import com.springboot.xmind.base.utils.StateParameter;
 import com.springboot.xmind.entity.user.UserInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -9,8 +10,10 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -84,8 +87,8 @@ public class LoginController extends  BaseController{
 	}
     
     @RequestMapping("/loginUser")
-    public String loginUser(HttpServletRequest request,String username,String password,String vcode) {
-
+	@ResponseBody
+    public ModelMap loginUser(HttpServletRequest request, UserInfo ui, String vcode) {
 		    HttpSession session = request.getSession();
 			//转化成小写字母
 			vcode = vcode.toLowerCase();
@@ -93,42 +96,36 @@ public class LoginController extends  BaseController{
 		    logger.info("获取保存vcode:"+v);
 	    	logger.info("验证vcode:"+vcode);
 			if(!vcode.equals(v)){
-				logger.info("对用户[" + username + "]验证码不通过");
+				logger.info("对用户[" + ui.getUsername() + "]验证码不通过");
 				request.setAttribute("message", "验证码不正确");
-				return "/base/login";//返回登录页面
+				//返回
+				return getModelMap(StateParameter.LOGINFAULT, ui,"验证码不正确");
 			}
-
-        	logger.info("进行账号"+username+",密码验证"+password+".....");
-        	UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
+        	logger.info("进行账号"+ ui.getUsername() +",密码验证"+ ui.getPassword() +".....");
+        	UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(ui.getUsername(), ui.getPassword());
         	Subject subject = SecurityUtils.getSubject();
     		try {  
         		subject.login(usernamePasswordToken);   //完成登录
         		UserInfo user=(UserInfo) subject.getPrincipal();
         		session.setAttribute("user", user);
-        		session.setAttribute("clickId","home");
-        		return "/base/loadHome";
+				return getModelMap(StateParameter.LOGINSUCCESS,"","登录成功");
 	        }catch(UnknownAccountException uae){  
-	            logger.info("对用户[" + username + "]进行登录验证..验证未通过,未知账户");  
-	            request.setAttribute("message", "未知账户");  
-	            return "/base/login";//返回登录页面
+	            logger.info("对用户[" + ui.getUsername() + "]进行登录验证..验证未通过,未知账户");
+				return getModelMap(StateParameter.LOGINFAULT,"","未知账户");
 	        }catch(IncorrectCredentialsException ice){  
-	            logger.info("对用户[" + username + "]进行登录验证..验证未通过,错误的凭证");  
-	            request.setAttribute("message", "密码不正确");  
-	            return "/base/login";//返回登录页面
+	            logger.info("对用户[" + ui.getUsername() + "]进行登录验证..验证未通过,错误的凭证");
+				return getModelMap(StateParameter.LOGINFAULT,"","密码不正确");
 	        }catch(LockedAccountException lae){  
-	            logger.info("对用户[" + username + "]进行登录验证..验证未通过,账户已锁定");  
-	            request.setAttribute("message", "账户已锁定");
-	            return "/base/login";//返回登录页面
+	            logger.info("对用户[" + ui.getUsername() + "]进行登录验证..验证未通过,账户已锁定");
+				return getModelMap(StateParameter.LOGINFAULT,"","账户已锁定");
 	        }catch(ExcessiveAttemptsException eae){  
-	            logger.info("对用户[" + username + "]进行登录验证..验证未通过,错误次数过多");  
-	            request.setAttribute("message", "用户名或密码错误次数过多");
-	            return "/base/login";//返回登录页面
+	            logger.info("对用户[" + ui.getUsername() + "]进行登录验证..验证未通过,错误次数过多");
+				return getModelMap(StateParameter.LOGINFAULT,"","用户名或密码错误次数过多");
 	        }catch(AuthenticationException ae){  
 	            //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景  
-	            logger.info("对用户[" + username + "]进行登录验证..验证未通过,堆栈轨迹如下");
+	            logger.info("对用户[" + ui.getUsername() + "]进行登录验证..验证未通过,堆栈轨迹如下");
 	            ae.printStackTrace();  
-	            request.setAttribute("message", "用户名或密码不正确");  
-	            return "/base/login";//返回登录页面
+				return getModelMap(StateParameter.LOGINFAULT,"","用户名或密码不正确");
 	        }  
         
     }

@@ -306,7 +306,7 @@ function downModal(idName){
         type: 'post',
         url: "../xmind/getDownloadurl",
         dataType: "json",
-        async: false,
+        //async: false,
         data : {
             idname : idName
         },
@@ -321,7 +321,8 @@ function downModal(idName){
                 //$("#downloadBtn").attr("href", downUrl);
                 window.location.href = result.data;
             }else{
-                alert(result.msg);
+                //alert(result.msg);
+                $("#loginModal").modal("show");
             }
         },
         complete:function(XMLHttpRequest,textStatus){
@@ -392,27 +393,5 @@ function getDownList(){
         $(".displayLi").hide();
         scrollTo(0,0);
     });
-
-    //登录操作
-/*
-    function login_popup() {
-        $("#loginModal").modal("show")
-    }
-
-    $(".globalLoginBtn").on("click", login_popup),function() {
-        var e = [];
-        $(".modal").on("show.bs.modal",
-            function() {
-                for (var s = 0; e.length > s; s++) e[s] && (e[s].modal("hide"), e[s] = null);
-                e.push($(this));
-                var o = $(this),
-                    a = o.find(".modal-dialog"),
-                    t = $('<div style="display:table; width:100%; height:100%;"></div>');
-                t.html('<div style="vertical-align:middle; display:table-cell;"></div>'),
-                    t.children("div").html(a),
-                    o.html(t)
-            })
-    } ();
-*/
 
 }

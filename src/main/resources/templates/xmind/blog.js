@@ -189,7 +189,7 @@ function downModal(idName){
         type: 'post',
         url: "../xmind/getDownloadurl",
         dataType: "json",
-        async: false,
+        //async: false,
         data : {
             idname : idName
         },

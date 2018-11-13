@@ -68,6 +68,8 @@ public class Xmind extends BaseEntity  {
     private String gravatar;
 
     private String fileurl;
+    //本地用户下载数量
+    private int localdown = 0;
 
     public String getIdname() {
         return idname;
@@ -277,6 +279,14 @@ public class Xmind extends BaseEntity  {
         this.fileurl = fileurl;
     }
 
+    public int getLocaldown() {
+        return localdown;
+    }
+
+    public void setLocaldown(int localdown) {
+        this.localdown = localdown;
+    }
+
     @Override
     public String toString() {
         return "Xmind{" +
@@ -306,7 +316,7 @@ public class Xmind extends BaseEntity  {
                 ", formatedTime=" + formatedTime +
                 ", gravatar='" + gravatar + '\'' +
                 ", fileurl='" + fileurl + '\'' +
-                ", id='" + id + '\'' +
+                ", localdown=" + localdown +
                 '}';
     }
 }
