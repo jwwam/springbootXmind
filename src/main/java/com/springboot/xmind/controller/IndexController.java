@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/xmind")
 public class IndexController {
 
-    @RequestMapping(value="/index")
-    public String auth(HttpServletRequest request){
-        return "/xmind/index";
-    }
+
 
 }

@@ -42,7 +42,7 @@ public class AlgorithmController extends BaseController{
         int skipNum = 0;
         int sumNum = 0;
         int s = 0;
-        int e = 100;//默认获取十条
+        int e = 1000;//默认获取十条
         Date lastTime = null;
         if(StringUtils.isNotEmpty(start)&&Integer.parseInt(start)!=0){
             s = Integer.parseInt(start);

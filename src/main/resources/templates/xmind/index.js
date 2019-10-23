@@ -14,7 +14,7 @@ $(function () {
             "bSort": false,
             bAutoWidth: false, //自动宽度
             destroy:true,
-            "sAjaxSource": "../xmind/getXmindList",
+            "sAjaxSource": "../center/getXmindList",
             "fnServerData": dataTableParam.retrieveData ,// 获取数据的处理函数
             "bPaginate": true,
             "sPaginationType": "full_numbers",
@@ -118,7 +118,7 @@ $(function () {
             "bSort": false,
             bAutoWidth: false, //自动宽度
             destroy:true,
-            "sAjaxSource": "../xmind/getXmindHotList",
+            "sAjaxSource": "../home/getXmindHotList",
             "fnServerData": dataTableParam.retrieveData ,// 获取数据的处理函数
             "bPaginate": true,
             "sPaginationType": "full_numbers",
@@ -304,7 +304,7 @@ function viewModal(viewUrl, idName, topic) {
 function downModal(idName){
     $.ajax({
         type: 'post',
-        url: "../xmind/getDownloadurl",
+        url: "../center/getDownloadurl",
         dataType: "json",
         //async: false,
         data : {
@@ -339,7 +339,7 @@ function downModal(idName){
 function getDownList(){
     $.ajax({
         type: 'post',
-        url: "../xmind/getDownList",
+        url: "../center/getDownList",
         dataType: "json",
         beforeSend:function(XMLHttpRequest){
             //$(".loading").show();

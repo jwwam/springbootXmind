@@ -187,7 +187,7 @@ function viewModal(viewUrl, idName, topic) {
 function downModal(idName){
     $.ajax({
         type: 'post',
-        url: "../xmind/getDownloadurl",
+        url: "../center/getDownloadurl",
         dataType: "json",
         //async: false,
         data : {
@@ -204,7 +204,8 @@ function downModal(idName){
                 //$("#downloadBtn").attr("href", downUrl);
                 window.location.href = result.data;
             }else{
-                alert(result.msg);
+                //alert(result.msg);
+                $("#loginModal").modal("show");
             }
         },
         complete:function(XMLHttpRequest,textStatus){

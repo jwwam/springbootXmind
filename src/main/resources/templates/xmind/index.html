@@ -31,7 +31,7 @@
 
       <!-- Main content -->
       <section class="content">
-        <div class="row">
+        <!--<div class="row">
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
               <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
@@ -40,11 +40,11 @@
                 <span class="info-box-text">发布总数</span>
                 <span class="info-box-number">1,410</span>
               </div>
-              <!-- /.info-box-content -->
+              &lt;!&ndash; /.info-box-content &ndash;&gt;
             </div>
-            <!-- /.info-box -->
+            &lt;!&ndash; /.info-box &ndash;&gt;
           </div>
-          <!-- /.col -->
+          &lt;!&ndash; /.col &ndash;&gt;
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
               <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
@@ -53,11 +53,11 @@
                 <span class="info-box-text">总下载数</span>
                 <span class="info-box-number">410</span>
               </div>
-              <!-- /.info-box-content -->
+              &lt;!&ndash; /.info-box-content &ndash;&gt;
             </div>
-            <!-- /.info-box -->
+            &lt;!&ndash; /.info-box &ndash;&gt;
           </div>
-          <!-- /.col -->
+          &lt;!&ndash; /.col &ndash;&gt;
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
               <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
@@ -66,11 +66,11 @@
                 <span class="info-box-text">上传数</span>
                 <span class="info-box-number">13,648</span>
               </div>
-              <!-- /.info-box-content -->
+              &lt;!&ndash; /.info-box-content &ndash;&gt;
             </div>
-            <!-- /.info-box -->
+            &lt;!&ndash; /.info-box &ndash;&gt;
           </div>
-          <!-- /.col -->
+          &lt;!&ndash; /.col &ndash;&gt;
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
               <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
@@ -79,12 +79,12 @@
                 <span class="info-box-text">访问总数</span>
                 <span class="info-box-number">93,139</span>
               </div>
-              <!-- /.info-box-content -->
+              &lt;!&ndash; /.info-box-content &ndash;&gt;
             </div>
-            <!-- /.info-box -->
+            &lt;!&ndash; /.info-box &ndash;&gt;
           </div>
-          <!-- /.col -->
-        </div>
+          &lt;!&ndash; /.col &ndash;&gt;
+        </div>-->
         <div class="row">
           <!--数据表格-->
           <div class="col-md-9">
@@ -104,14 +104,14 @@
                             <button type="button" class="btn btn-default" id="topicBtn" style="height:34px;">
                               <i class="fa fa-search"></i>
                             </button>
-                            <button type='button' class='btn btn-primary' id="openmodal">获取最新数据</button>
+                            <button type='button' class='btn btn-primary' id="openmodal" style="display: none;">获取最新数据</button>
                           </div>
                         </div>
                         <div class="input-group input-group-sm" style="width: 150px;float:right;margin-right:20px;">
                           <div style='display: inline-block'>
                             <input type='hidden' id='language' name='language' value='${language}'/>
                             <select id='lang' name='lang' class='form-control select2' style='width: 150px;color:#999;'>
-                              <option value="">请选择</option>
+                              <option value="">请选择语言</option>
                               <option value="zh">中文</option>
                               <option value="en">English</option>
                               <option value="es">Español</option>
@@ -235,7 +235,7 @@
             <!-- /.widget-user -->
           </div>
           <!--上传榜-->
-          <div class="col-md-3" style="margin-left: 75%; ">
+          <div class="col-md-3">
             <!-- Widget: user widget style 1 -->
             <div class="box box-widget widget-user">
               <div class="box-header with-border">

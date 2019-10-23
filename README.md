@@ -24,4 +24,4 @@ http://localhost:8080/first/back
 注：
 更新数据时后续需要将文件下载到本地
 
-http://www.feelcode.cn/xmind-0.9/xmind/index
+http://www.feelcode.cn/xmind/center/index
